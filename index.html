@@ -37,17 +37,13 @@
             border-bottom: 3px solid #2c3e50; 
             padding-bottom: 15px; 
             margin-bottom: 20px;
-            gap: 10px;
+            gap: 20px;
         }
-        .header-logo-anesthemed img { 
-            display: block; 
-            max-width: 180px; 
-            height: auto; 
-        }
+        .header-logo-anesthemed img, 
         .header-logo-inovare img { 
             display: block; 
-            max-width: 130px; 
-            height: auto; 
+            height: 65px; 
+            width: auto; 
         }
         .header-title {
             flex-grow: 1;
@@ -63,6 +59,7 @@
             font-size: 11px;
             font-weight: bold;
             color: #7f8c8d;
+            margin-top: 5px;
         }
         .section { 
             border: 1px solid #dcdde1; 
@@ -112,7 +109,6 @@
         .med-item { display: flex; align-items: center; border-bottom: 1px solid #f1f2f6; padding: 2px 0; }
         .med-item span { font-size: 10px; font-weight: bold; margin-right: 8px; width: 20px; color: #bdc3c7; }
         .bottom-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        
         .signatures { 
             margin-top: auto; 
             padding-bottom: 20px; 
@@ -131,13 +127,11 @@
             font-size: 11px; 
             font-weight: bold;
         }
-
         @media print {
             body { background-color: #fff; padding: 0; }
             .container { border: none; box-shadow: none; width: 100%; padding: 0; margin: 0; min-height: 100%; }
             .buttons { display: none !important; }
         }
-
         .buttons { text-align: center; margin: 30px 0; display: flex; justify-content: center; gap: 15px; }
         .buttons button { padding: 12px 24px; cursor: pointer; border: none; border-radius: 6px; font-weight: bold; font-size: 13px; color: white; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .btn-print { background-color: #3498db; }
@@ -274,7 +268,7 @@
         const linkFinal = urlBase + params;
         const mensagem = "📋 *AVALIAÇÃO PRÉ-ANESTÉSICA*\n👤 PACIENTE: " + nome.toUpperCase() + "\n🔗 LINK: " + linkFinal;
         if (navigator.clipboard) {
-            navigator.clipboard.writeText(mensagem).then(() => alert("Link copiado para o WhatsApp!"));
+            navigator.clipboard.writeText(mensagem).then(() => alert("Link copiado!"));
         } else {
             prompt("COPIAR DADOS:", mensagem);
         }
