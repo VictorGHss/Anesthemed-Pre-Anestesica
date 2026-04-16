@@ -27,7 +27,10 @@
         }
         .header-logo-anesthemed img { height: 75px; width: auto; }
         .header-logo-inovare img { height: 50px; width: auto; }
+        
+        .header-title { display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .header-title h2 { margin: 0; font-size: 16px; text-transform: uppercase; text-align: center; }
+        .header-title span { font-size: 12px; font-weight: bold; margin-top: 4px; color: var(--primary); }
 
         .section { border: 1px solid var(--border); margin-bottom: 8px; padding: 6px 10px; border-radius: 4px; display: flex; flex-direction: column; flex: 1; }
         .section-title { 
@@ -52,7 +55,6 @@
 
         textarea { resize: none; width: 100%; box-sizing: border-box; flex-grow: 1; min-height: 85px; }
 
-        /* QUADRADO COM CHECK ✓ AUMENTADO */
         input[type="radio"], input[type="checkbox"] { display: none; }
         .btn-check {
             display: inline-block; width: 12px; height: 12px; border: 1px solid var(--primary);
@@ -66,7 +68,6 @@
 
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         
-        /* ALINHAMENTO S/N AJUSTADO PARA O NOVO TAMANHO DO QUADRADINHO */
         .sn-header { display: flex; font-weight: bold; font-size: 9px; color: #7f8c8d; margin-bottom: 2px; padding-left: 0; }
         .sn-header span { display: inline-block; width: 16px; text-align: center; margin-right: 0; } 
 
@@ -78,7 +79,7 @@
         .grid-exams { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
         
         .signatures { margin-top: auto; padding: 15px 0 20px 0; }
-        .sig-row { display: flex; justify-content: space-around; gap: 15px; margin-top: 70px; } /* Aumentei o espaço para assinar aqui */
+        .sig-row { display: flex; justify-content: space-around; gap: 15px; margin-top: 70px; } 
         .sig-box { border-top: 1.2px solid var(--primary); text-align: center; width: 250px; padding-top: 4px; font-size: 11px; font-weight: bold; }
 
         .buttons { display: flex; justify-content: center; gap: 10px; padding: 10px; }
@@ -109,7 +110,10 @@
     <form id="avaliacao-form">
         <header class="header">
             <div class="header-logo-anesthemed"><img src="LogoAnesthemed.png" alt="AnestheMed"></div>
-            <div class="header-title"><h2>Avaliação Pré Anestésica</h2></div>
+            <div class="header-title">
+                <h2>Avaliação Pré Anestésica</h2>
+                <span>(42) 3026-2640</span>
+            </div>
             <div class="header-logo-inovare"><img src="https://inovare.med.br/wp-content/uploads/2023/01/Logo.png" alt="Inovare"></div>
         </header>
 
