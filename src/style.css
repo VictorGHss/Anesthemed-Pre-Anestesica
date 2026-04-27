@@ -49,23 +49,56 @@ input[type="text"], input[type="number"], textarea {
 textarea { resize: none; width: 100%; box-sizing: border-box; flex-grow: 1; min-height: 85px; }
 
 input[type="radio"], input[type="checkbox"] { display: none; }
+
 .btn-check {
-    display: inline-block; width: 12px; height: 12px; border: 1px solid var(--primary);
-    margin-right: 2px; text-align: center; line-height: 10px; cursor: pointer;
-    background: #fff; vertical-align: middle; position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; 
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--primary);
+    margin-right: 2px;
+    cursor: pointer;
+    background: #fff;
+    vertical-align: middle;
+    position: relative;
+    box-sizing: border-box;
 }
 
-/* Modificação para deixar o V mais forte */
 input:checked + .btn-check::after {
     content: "✔"; 
     font-weight: 900; 
-    font-size: 14px; 
     position: absolute;
-    top: -4px; 
-    left: -1px; 
     color: var(--primary); 
     display: block;
-    -webkit-text-stroke: 1px var(--primary);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+/* 1. Quando o valor for "S" (Sim): V bem MAIS GORDO (Stroke forte) */
+input[value="S"]:checked + .btn-check::after {
+    font-size: 14px; 
+    -webkit-text-stroke: 1.2px var(--primary); /* Engorda a fonte */
+}
+
+/* 2. Quando o valor for "N" (Não): V BEM FINO (Sem stroke) */
+input[value="N"]:checked + .btn-check::after {
+    font-size: 11px; /* Ligeiramente menor */
+    -webkit-text-stroke: 0px transparent; /* Remove qualquer stroke */
+}
+
+/* 3. Estilo para Checkboxes (geralmente finos, como o 'Não') */
+input[type="checkbox"]:checked + .btn-check::after {
+    font-size: 11px;
+    -webkit-text-stroke: 0px transparent;
+}
+
+/* 4. Estilo para o Status e ASA (Gordos para chamar atenção) */
+input[name="st"]:checked + .btn-check::after,
+input[name="asa"]:checked + .btn-check::after {
+    font-size: 14px; 
+    -webkit-text-stroke: 1.2px var(--primary);
 }
 
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
