@@ -4,107 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação Pré Anestésica - AnestheMed</title>
-    <style>
-        @page { size: A4; margin: 5mm; }
-        :root { --primary: #2c3e50; --border: #dcdde1; --bg: #f4f7f6; }
-
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--bg);
-            margin: 0; padding: 0; font-size: 11px; line-height: 1.25; 
-            color: var(--primary); -webkit-print-color-adjust: exact; print-color-adjust: exact;
-        }
-
-        .container { 
-            background-color: #fff; max-width: 850px; margin: 0 auto; 
-            padding: 15px 25px 10px 25px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            display: flex; flex-direction: column; min-height: 276mm; box-sizing: border-box;
-        }
-
-        .header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-bottom: 12px; gap: 10px;
-        }
-        .header-logo-anesthemed img { height: 75px; width: auto; }
-        .header-logo-inovare img { height: 50px; width: auto; }
-        
-        .header-title { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .header-title h2 { margin: 0; font-size: 16px; text-transform: uppercase; text-align: center; }
-        .header-title span { font-size: 12px; font-weight: bold; margin-top: 4px; color: var(--primary); }
-
-        .section { border: 1px solid var(--border); margin-bottom: 8px; padding: 6px 10px; border-radius: 4px; display: flex; flex-direction: column; flex: 1; }
-        .section-title { 
-            background-color: #f8f9fa; font-weight: bold; padding: 4px; 
-            margin: -6px -10px 6px -10px; text-align: center; text-transform: uppercase; 
-            font-size: 10px; color: var(--primary); border-bottom: 1px solid var(--border);
-        }
-
-        .row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; align-items: center; }
-        .form-group { display: flex; align-items: center; flex: 1; }
-        
-        label, .label-text, span, strong { 
-            margin-right: 4px; font-weight: bold; color: var(--primary) !important; 
-            white-space: nowrap; font-size: 11px; 
-        }
-        
-        input[type="text"], input[type="number"], textarea { 
-            border: none; border-bottom: 1px solid #bdc3c7; flex: 1; 
-            padding: 2px 4px; font-size: 11px; outline: none; background: transparent; color: #333;
-            min-width: 0;
-        }
-
-        textarea { resize: none; width: 100%; box-sizing: border-box; flex-grow: 1; min-height: 85px; }
-
-        input[type="radio"], input[type="checkbox"] { display: none; }
-        .btn-check {
-            display: inline-block; width: 12px; height: 12px; border: 1px solid var(--primary);
-            margin-right: 2px; text-align: center; line-height: 10px; cursor: pointer;
-            background: #fff; vertical-align: middle; position: relative;
-        }
-        input:checked + .btn-check::after {
-            content: "✓"; font-weight: 900; font-size: 14px; position: absolute;
-            top: -3px; left: 0px; color: var(--primary); display: block;
-        }
-
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        
-        .sn-header { display: flex; font-weight: bold; font-size: 9px; color: #7f8c8d; margin-bottom: 2px; padding-left: 0; }
-        .sn-header span { display: inline-block; width: 16px; text-align: center; margin-right: 0; } 
-
-        .box-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; align-items: stretch; }
-        .med-list-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-        .med-item { display: flex; align-items: center; border-bottom: 1px solid #f1f2f6; margin-bottom: 2px; }
-        .med-item span { font-size: 9px; font-weight: bold; margin-right: 4px; width: 14px; color: #bdc3c7 !important; }
-
-        .grid-exams { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
-        
-        .signatures { margin-top: auto; padding: 15px 0 20px 0; }
-        .sig-row { display: flex; justify-content: space-around; gap: 15px; margin-top: 70px; } 
-        .sig-box { border-top: 1.2px solid var(--primary); text-align: center; width: 250px; padding-top: 4px; font-size: 11px; font-weight: bold; }
-
-        .buttons { display: flex; justify-content: center; gap: 10px; padding: 10px; }
-        .buttons button { 
-            padding: 8px 15px; border: none; border-radius: 4px; font-weight: bold; 
-            color: white; cursor: pointer; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .btn-print { background-color: #3498db; }
-        .btn-share { background-color: #2ecc71; }
-        .btn-clear { background-color: #e74c3c; }
-
-        .obs-input {
-            width: 100%; border: none; border-bottom: 1px dotted #ccc; 
-            background: transparent; margin-top: 8px; outline: none;
-            padding-bottom: 4px; height: 18px;
-        }
-
-        @media print {
-            .container { max-width: 100%; border: none; box-shadow: none; padding: 0; margin: 0; min-height: 276mm; }
-            .buttons { display: none !important; }
-            body { background: white; }
-        }
-    </style>
+    <link rel="stylesheet" href="src/style.css">
+    <script type="module" src="/src/app.ts"></script>
 </head>
-<body onload="carregarDadosUrl(); definirData();">
+<body>
 
 <div class="container">
     <form id="avaliacao-form">
@@ -119,16 +22,16 @@
 
         <section class="section">
             <div class="row">
-                <div class="form-group" style="flex: 2;"><label>Paciente:</label><input type="text" id="nome_paciente"></div>
-                <div class="form-group"><label>CPF:</label><input type="text" id="cpf_paciente"></div>
+                <div class="form-group" style="flex: 2;"><label>Paciente:</label><input type="text" name="nome_paciente" id="nome_paciente"></div>
+                <div class="form-group"><label>CPF:</label><input type="text" name="cpf_paciente" id="cpf_paciente"></div>
             </div>
             <div class="row">
-                <div class="form-group" style="flex: 2;"><label>Cirurgia:</label><input type="text"></div>
-                <div class="form-group"><label>Idade:</label><input type="number" id="idade_paciente" style="width: 35px; flex: none;"><span> ANOS</span></div>
+                <div class="form-group" style="flex: 2;"><label>Cirurgia:</label><input type="text" name="cirurgia"></div>
+                <div class="form-group"><label>Idade:</label><input type="number" name="idade_paciente" id="idade_paciente" style="width: 35px; flex: none;"><span> ANOS</span></div>
             </div>
             <div class="row">
-                <div class="form-group"><label>Cirurgião:</label><input type="text"></div>
-                <div class="form-group"><label>Convênio:</label><input type="text"></div>
+                <div class="form-group"><label>Cirurgião:</label><input type="text" name="cirurgiao"></div>
+                <div class="form-group"><label>Convênio:</label><input type="text" name="convenio"></div>
             </div>
         </section>
 
@@ -137,34 +40,34 @@
             <div class="grid-3">
                 <div>
                     <div class="sn-header"><span>S</span><span>N</span></div>
-                    <div class="row"><label><input type="radio" name="d1"><span class="btn-check"></span></label><label><input type="radio" name="d1"><span class="btn-check"></span></label> 01. Hipertensão arterial</div>
-                    <div class="row"><label><input type="radio" name="d2"><span class="btn-check"></span></label><label><input type="radio" name="d2"><span class="btn-check"></span></label> 02. Cardiopatia</div>
-                    <div class="row"><label><input type="radio" name="d3"><span class="btn-check"></span></label><label><input type="radio" name="d3"><span class="btn-check"></span></label> 03. Dispnéia esforços</div>
-                    <div class="row"><label><input type="radio" name="d4"><span class="btn-check"></span></label><label><input type="radio" name="d4"><span class="btn-check"></span></label> 04. Precordialgia</div>
-                    <div class="row"><label><input type="radio" name="d5"><span class="btn-check"></span></label><label><input type="radio" name="d5"><span class="btn-check"></span></label> 05. Diabetes mellitus</div>
-                    <div class="row"><label><input type="radio" name="d6"><span class="btn-check"></span></label><label><input type="radio" name="d6"><span class="btn-check"></span></label> 06. Outras endócrinas</div>
-                    <div class="row"><label><input type="radio" name="d7"><span class="btn-check"></span></label><label><input type="radio" name="d7"><span class="btn-check"></span></label> 07. Pneumopatia</div>
+                    <div class="row"><label><input type="radio" name="d1" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d1" value="N"><span class="btn-check"></span></label> 01. Hipertensão arterial</div>
+                    <div class="row"><label><input type="radio" name="d2" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d2" value="N"><span class="btn-check"></span></label> 02. Cardiopatia</div>
+                    <div class="row"><label><input type="radio" name="d3" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d3" value="N"><span class="btn-check"></span></label> 03. Dispnéia esforços</div>
+                    <div class="row"><label><input type="radio" name="d4" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d4" value="N"><span class="btn-check"></span></label> 04. Precordialgia</div>
+                    <div class="row"><label><input type="radio" name="d5" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d5" value="N"><span class="btn-check"></span></label> 05. Diabetes mellitus</div>
+                    <div class="row"><label><input type="radio" name="d6" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d6" value="N"><span class="btn-check"></span></label> 06. Outras endócrinas</div>
+                    <div class="row"><label><input type="radio" name="d7" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d7" value="N"><span class="btn-check"></span></label> 07. Pneumopatia</div>
                 </div>
                 <div>
                     <div class="sn-header"><span>S</span><span>N</span></div>
-                    <div class="row"><label><input type="radio" name="d8"><span class="btn-check"></span></label><label><input type="radio" name="d8"><span class="btn-check"></span></label> 08. Tabagismo <input type="text" style="width:70px; flex: none;"></div>
-                    <div class="row"><label><input type="radio" name="d9"><span class="btn-check"></span></label><label><input type="radio" name="d9"><span class="btn-check"></span></label> 09. Hepatite / Renal</div>
-                    <div class="row"><label><input type="radio" name="d10"><span class="btn-check"></span></label><label><input type="radio" name="d10"><span class="btn-check"></span></label> 10. Alergia med.</div>
-                    <div class="row"><label><input type="radio" name="d11"><span class="btn-check"></span></label><label><input type="radio" name="d11"><span class="btn-check"></span></label> 11. Convulsão</div>
-                    <div class="row"><label><input type="radio" name="d12"><span class="btn-check"></span></label><label><input type="radio" name="d12"><span class="btn-check"></span></label> 12. Sangramento</div>
-                    <div class="row"><label><input type="radio" name="d13"><span class="btn-check"></span></label><label><input type="radio" name="d13"><span class="btn-check"></span></label> 13. Prótese dentária</div>
-                    <div class="row"><label><input type="radio" name="d14"><span class="btn-check"></span></label><label><input type="radio" name="d14"><span class="btn-check"></span></label> 14. Gravidez?</div>
+                    <div class="row"><label><input type="radio" name="d8" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d8" value="N"><span class="btn-check"></span></label> 08. Tabagismo <input type="text" name="d8_obs" style="width:70px; flex: none;"></div>
+                    <div class="row"><label><input type="radio" name="d9" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d9" value="N"><span class="btn-check"></span></label> 09. Hepatite / Renal</div>
+                    <div class="row"><label><input type="radio" name="d10" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d10" value="N"><span class="btn-check"></span></label> 10. Alergia med.</div>
+                    <div class="row"><label><input type="radio" name="d11" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d11" value="N"><span class="btn-check"></span></label> 11. Convulsão</div>
+                    <div class="row"><label><input type="radio" name="d12" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d12" value="N"><span class="btn-check"></span></label> 12. Sangramento</div>
+                    <div class="row"><label><input type="radio" name="d13" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d13" value="N"><span class="btn-check"></span></label> 13. Prótese dentária</div>
+                    <div class="row"><label><input type="radio" name="d14" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d14" value="N"><span class="btn-check"></span></label> 14. Gravidez?</div>
                 </div>
                 <div>
                     <div class="sn-header"><span>S</span><span>N</span></div>
-                    <div class="row"><label><input type="radio" name="d15"><span class="btn-check"></span></label><label><input type="radio" name="d15"><span class="btn-check"></span></label> 15. Anestesias ant.</div>
-                    <div class="row"><label><input type="radio" name="d16"><span class="btn-check"></span></label><label><input type="radio" name="d16"><span class="btn-check"></span></label> 16. Complicações</div>
-                    <div class="row"><label><input type="radio" name="d17"><span class="btn-check"></span></label><label><input type="radio" name="d17"><span class="btn-check"></span></label> 17. Outras doenças</div>
-                    <div class="row"><label><input type="radio" name="d18"><span class="btn-check"></span></label><label><input type="radio" name="d18"><span class="btn-check"></span></label> 18. Emagrecedores</div>
+                    <div class="row"><label><input type="radio" name="d15" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d15" value="N"><span class="btn-check"></span></label> 15. Anestesias ant.</div>
+                    <div class="row"><label><input type="radio" name="d16" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d16" value="N"><span class="btn-check"></span></label> 16. Complicações</div>
+                    <div class="row"><label><input type="radio" name="d17" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d17" value="N"><span class="btn-check"></span></label> 17. Outras doenças</div>
+                    <div class="row"><label><input type="radio" name="d18" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d18" value="N"><span class="btn-check"></span></label> 18. Emagrecedores</div>
                     <div style="font-weight: bold; font-size: 9px; border-top: 1px solid #eee; margin: 5px 0; color: #95a5a6; text-align: center;">CRIANÇAS</div>
-                    <div class="row"><label><input type="radio" name="d19"><span class="btn-check"></span></label><label><input type="radio" name="d19"><span class="btn-check"></span></label> 19. IVAS recente</div>
-                    <div class="row"><label><input type="radio" name="d20"><span class="btn-check"></span></label><label><input type="radio" name="d20"><span class="btn-check"></span></label> 20. Diarréia recente</div>
-                    <div class="row"><label><input type="radio" name="d21"><span class="btn-check"></span></label><label><input type="radio" name="d21"><span class="btn-check"></span></label> 21. Prematuro?</div>
+                    <div class="row"><label><input type="radio" name="d19" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d19" value="N"><span class="btn-check"></span></label> 19. IVAS recente</div>
+                    <div class="row"><label><input type="radio" name="d20" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d20" value="N"><span class="btn-check"></span></label> 20. Diarréia recente</div>
+                    <div class="row"><label><input type="radio" name="d21" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d21" value="N"><span class="btn-check"></span></label> 21. Prematuro?</div>
                 </div>
             </div>
         </section>
@@ -172,18 +75,32 @@
         <div class="box-row">
             <section class="section">
                 <div class="section-title">COMENTAR DADOS POSITIVOS</div>
-                <textarea border="none"></textarea>
+                <textarea name="comentarios_positivos" style="border:none"></textarea>
                 <div class="row" style="margin-top:4px; border-top:1px solid #eee; padding-top:4px;">
                     <span class="label-text">ANTICOAGULANTES:</span>
-                    <label><input type="radio" name="atc"><span class="btn-check"></span> Sim</label>
-                    <label><input type="radio" name="atc"><span class="btn-check"></span> Não</label>
+                    <label><input type="radio" name="atc" value="S"><span class="btn-check"></span> Sim</label>
+                    <label><input type="radio" name="atc" value="N"><span class="btn-check"></span> Não</label>
                 </div>
             </section>
             <section class="section">
                 <div class="section-title">MEDICAMENTOS EM USO</div>
                 <div class="med-list-cols">
-                    <div><div class="med-item"><span>01</span><input type="text"></div><div class="med-item"><span>02</span><input type="text"></div><div class="med-item"><span>03</span><input type="text"></div><div class="med-item"><span>04</span><input type="text"></div><div class="med-item"><span>05</span><input type="text"></div><div class="med-item"><span>06</span><input type="text"></div></div>
-                    <div><div class="med-item"><span>07</span><input type="text"></div><div class="med-item"><span>08</span><input type="text"></div><div class="med-item"><span>09</span><input type="text"></div><div class="med-item"><span>10</span><input type="text"></div><div class="med-item"><span>11</span><input type="text"></div><div class="med-item"><span>12</span><input type="text"></div></div>
+                    <div>
+                        <div class="med-item"><span>01</span><input type="text" name="med_1"></div>
+                        <div class="med-item"><span>02</span><input type="text" name="med_2"></div>
+                        <div class="med-item"><span>03</span><input type="text" name="med_3"></div>
+                        <div class="med-item"><span>04</span><input type="text" name="med_4"></div>
+                        <div class="med-item"><span>05</span><input type="text" name="med_5"></div>
+                        <div class="med-item"><span>06</span><input type="text" name="med_6"></div>
+                    </div>
+                    <div>
+                        <div class="med-item"><span>07</span><input type="text" name="med_7"></div>
+                        <div class="med-item"><span>08</span><input type="text" name="med_8"></div>
+                        <div class="med-item"><span>09</span><input type="text" name="med_9"></div>
+                        <div class="med-item"><span>10</span><input type="text" name="med_10"></div>
+                        <div class="med-item"><span>11</span><input type="text" name="med_11"></div>
+                        <div class="med-item"><span>12</span><input type="text" name="med_12"></div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -193,59 +110,59 @@
                 <div class="section-title">EXAME FÍSICO</div>
                 
                 <div class="row" style="flex-wrap: nowrap;">
-                    <label>PESO:</label><input type="text" style="width: 35px; flex: none;">
-                    <label style="margin-left: 5px;">ALTURA:</label><input type="text" style="width: 35px; flex: none;">
-                    <label style="margin-left: 5px;">PA:</label><input type="text" style="width: 50px; flex: none;">
+                    <label>PESO:</label><input type="text" name="peso" style="width: 35px; flex: none;">
+                    <label style="margin-left: 5px;">ALTURA:</label><input type="text" name="altura" style="width: 35px; flex: none;">
+                    <label style="margin-left: 5px;">PA:</label><input type="text" name="pa" style="width: 50px; flex: none;">
                 </div>
                 
                 <div class="row">
-                    <div class="form-group" style="flex: 1;"><label>Mallampati:</label><input type="text"></div>
+                    <div class="form-group" style="flex: 1;"><label>Mallampati:</label><input type="text" name="mallampati"></div>
                     <div style="display: flex; align-items: center; margin-left: 5px;">
-                        <label>T:</label><input type="text" style="width:30px; flex: none; margin-right: 5px;">
-                        <label><input type="checkbox"><span class="btn-check"></span> Afeb.</label>
-                        <label><input type="checkbox"><span class="btn-check"></span> Feb.</label>
+                        <label>T:</label><input type="text" name="temperatura" style="width:30px; flex: none; margin-right: 5px;">
+                        <label><input type="checkbox" name="afeb" value="S"><span class="btn-check"></span> Afeb.</label>
+                        <label><input type="checkbox" name="feb" value="S"><span class="btn-check"></span> Feb.</label>
                     </div>
                 </div>
                 
                 <div class="row">
                     <span class="label-text">Intubação Difícil?</span> 
-                    <label><input type="checkbox"><span class="btn-check"></span> S</label>
-                    <label><input type="checkbox"><span class="btn-check"></span> N</label>
+                    <label><input type="checkbox" name="intubacao_dificil_s" value="S"><span class="btn-check"></span> S</label>
+                    <label><input type="checkbox" name="intubacao_dificil_n" value="N"><span class="btn-check"></span> N</label>
                 </div>
                 
                 <div class="row" style="flex-wrap: nowrap; align-items: center;">
-                    <label>Resp:</label><input type="text" style="flex: 1; min-width: 0;">
-                    <label style="margin: 0 2px;"><input type="checkbox"><span class="btn-check"></span> CPP Livres</label>
-                    <label>Alt:</label><input type="text" style="width: 35px; flex: none;">
+                    <label>Resp:</label><input type="text" name="resp" style="flex: 1; min-width: 0;">
+                    <label style="margin: 0 2px;"><input type="checkbox" name="cpp_livres" value="S"><span class="btn-check"></span> CPP Livres</label>
+                    <label>Alt:</label><input type="text" name="resp_alt" style="width: 35px; flex: none;">
                 </div>
                 
                 <div class="row" style="flex-wrap: nowrap; align-items: center;">
-                    <label>Cardio:</label><input type="text" style="flex: 1; min-width: 0;">
-                    <label style="margin: 0 2px;"><input type="checkbox"><span class="btn-check"></span> BRNF</label>
-                    <label>Alt:</label><input type="text" style="width: 35px; flex: none;">
+                    <label>Cardio:</label><input type="text" name="cardio" style="flex: 1; min-width: 0;">
+                    <label style="margin: 0 2px;"><input type="checkbox" name="brnf" value="S"><span class="btn-check"></span> BRNF</label>
+                    <label>Alt:</label><input type="text" name="cardio_alt" style="width: 35px; flex: none;">
                 </div>
                 
-                <div class="row"><div class="form-group"><label>Coluna:</label><input type="text"></div></div>
-                <div class="row"><div class="form-group"><label>Acesso:</label><input type="text"></div></div>
+                <div class="row"><div class="form-group"><label>Coluna:</label><input type="text" name="coluna"></div></div>
+                <div class="row"><div class="form-group"><label>Acesso:</label><input type="text" name="acesso"></div></div>
             </section>
             
             <section class="section">
                 <div class="section-title">EXAMES COMPLEMENTARES</div>
                 <div class="grid-exams">
-                    <div class="form-group"><label>HB:</label><input type="text"></div>
-                    <div class="form-group"><label>VG:</label><input type="text"></div>
-                    <div class="form-group"><label>Glic:</label><input type="text"></div>
-                    <div class="form-group"><label>Plaq:</label><input type="text"></div>
-                    <div class="form-group"><label>TAP/RNI:</label><input type="text"></div>
-                    <div class="form-group"><label>KPTT:</label><input type="text"></div>
-                    <div class="form-group"><label>U/C:</label><input type="text"></div>
-                    <div class="form-group"><label>ECG:</label><input type="text"></div>
+                    <div class="form-group"><label>HB:</label><input type="text" name="ex_hb"></div>
+                    <div class="form-group"><label>VG:</label><input type="text" name="ex_vg"></div>
+                    <div class="form-group"><label>Glic:</label><input type="text" name="ex_glic"></div>
+                    <div class="form-group"><label>Plaq:</label><input type="text" name="ex_plaq"></div>
+                    <div class="form-group"><label>TAP/RNI:</label><input type="text" name="ex_tap"></div>
+                    <div class="form-group"><label>KPTT:</label><input type="text" name="ex_kptt"></div>
+                    <div class="form-group"><label>U/C:</label><input type="text" name="ex_uc"></div>
+                    <div class="form-group"><label>ECG:</label><input type="text" name="ex_ecg"></div>
                 </div>
                 <div class="row" style="margin-top:6px; border-top:1px solid #eee; padding-top:5px;">
                     <span class="label-text">JEJUM?</span> 
-                    <label><input type="checkbox"><span class="btn-check"></span> Sim</label> 
-                    <label><input type="checkbox"><span class="btn-check"></span> Não</label>
-                    <span class="label-text" style="margin-left:5px;">Horas:</span><input type="text" style="width:25px; flex: none; text-align:center;">
+                    <label><input type="checkbox" name="jejum_sim" value="S"><span class="btn-check"></span> Sim</label> 
+                    <label><input type="checkbox" name="jejum_nao" value="N"><span class="btn-check"></span> Não</label>
+                    <span class="label-text" style="margin-left:5px;">Horas:</span><input type="text" name="jejum_horas" style="width:25px; flex: none; text-align:center;">
                 </div>
             </section>
         </div>
@@ -254,29 +171,29 @@
             <div class="section-title">CONCLUSÕES</div>
             <div class="row">
                 <span class="label-text">STATUS:</span>
-                <label style="margin-left:5px;"><input type="radio" name="st"><span class="btn-check"></span> LIBERADO</label>
-                <label style="margin-left:5px;"><input type="radio" name="st"><span class="btn-check"></span> NÃO LIBERADO</label>
-                <label style="margin-left:5px;"><input type="radio" name="st"><span class="btn-check"></span> AGUARDA AVALIAÇÃO</label>
+                <label style="margin-left:5px;"><input type="radio" name="st" value="LIBERADO"><span class="btn-check"></span> LIBERADO</label>
+                <label style="margin-left:5px;"><input type="radio" name="st" value="NAO_LIBERADO"><span class="btn-check"></span> NÃO LIBERADO</label>
+                <label style="margin-left:5px;"><input type="radio" name="st" value="AGUARDA_AVAL"><span class="btn-check"></span> AGUARDA AVALIAÇÃO</label>
             </div>
             <div class="row">
                 <span class="label-text">ASA:</span>
-                <label style="margin-left:5px;"><input type="radio" name="asa"><span class="btn-check"></span> I</label>
-                <label style="margin-left:5px;"><input type="radio" name="asa"><span class="btn-check"></span> II</label>
-                <label style="margin-left:5px;"><input type="radio" name="asa"><span class="btn-check"></span> III</label>
-                <label style="margin-left:5px;"><input type="radio" name="asa"><span class="btn-check"></span> IV</label>
-                <label style="margin-left:10px;"><input type="checkbox"><span class="btn-check"></span> EMERGÊNCIA</label>
+                <label style="margin-left:5px;"><input type="radio" name="asa" value="I"><span class="btn-check"></span> I</label>
+                <label style="margin-left:5px;"><input type="radio" name="asa" value="II"><span class="btn-check"></span> II</label>
+                <label style="margin-left:5px;"><input type="radio" name="asa" value="III"><span class="btn-check"></span> III</label>
+                <label style="margin-left:5px;"><input type="radio" name="asa" value="IV"><span class="btn-check"></span> IV</label>
+                <label style="margin-left:10px;"><input type="checkbox" name="emergencia" value="S"><span class="btn-check"></span> EMERGÊNCIA</label>
             </div>
-            <div class="row"><div class="form-group"><label>Conduta:</label><input type="text"></div></div>
+            <div class="row"><div class="form-group"><label>Conduta:</label><input type="text" name="conduta"></div></div>
         </section>
 
         <section class="section" style="border:none; margin-bottom: 0; flex: 0;">
             <strong>OBSERVAÇÕES GERAIS:</strong>
-            <input type="text" class="obs-input">
-            <input type="text" class="obs-input">
+            <input type="text" name="obs_1" class="obs-input">
+            <input type="text" name="obs_2" class="obs-input">
         </section>
 
         <footer class="signatures">
-            <div class="row"><div class="form-group"><label>Data da Avaliação:</label><input type="text" id="data_avaliacao" style="max-width: 120px;"></div></div>
+            <div class="row"><div class="form-group"><label>Data da Avaliação:</label><input type="text" name="data_avaliacao" id="data_avaliacao" style="max-width: 120px;"></div></div>
             <div class="sig-row">
                 <div class="sig-box">Anestesiologista</div>
                 <div class="sig-box">Paciente / Responsável</div>
@@ -284,36 +201,13 @@
         </footer>
 
         <div class="buttons">
-            <button type="button" class="btn-clear" onclick="limparFormulario()">Limpar Tudo</button>
-            <button type="button" class="btn-share" onclick="gerarLinkCompartilhamento()">Enviar Link Médico</button>
-            <button type="button" class="btn-print" onclick="imprimirAval()">Imprimir / PDF</button>
+            <button type="button" class="btn-clear" id="btn-clear">Limpar Tudo</button>
+            <button type="button" class="btn-share" id="btn-share">Enviar Link Médico</button>
+            <button type="button" class="btn-print" id="btn-print">Imprimir / PDF</button>
         </div>
     </form>
 </div>
 
-<script>
-    function definirData() { document.getElementById('data_avaliacao').value = new Date().toLocaleDateString('pt-BR'); }
-    function limparFormulario() { if (confirm("Limpar todos os campos?")) { document.getElementById("avaliacao-form").reset(); definirData(); window.history.pushState({}, document.title, window.location.pathname); } }
-    function gerarLinkCompartilhamento() {
-        const n = document.getElementById('nome_paciente').value;
-        const c = document.getElementById('cpf_paciente').value;
-        const i = document.getElementById('idade_paciente').value;
-        if (!n) { alert("Preencha o nome!"); return; }
-        const link = window.location.origin + window.location.pathname + `?n=${encodeURIComponent(n)}&c=${encodeURIComponent(c)}&i=${encodeURIComponent(i)}`;
-        const msg = `📋 *AVALIAÇÃO PRÉ-ANESTÉSICA*\n👤 PACIENTE: ${n.toUpperCase()}\n🔗 LINK: ${link}`;
-        if (navigator.clipboard) { navigator.clipboard.writeText(msg).then(() => alert("Link copiado!")); } else { prompt("COPIAR DADOS:", msg); }
-    }
-    function carregarDadosUrl() {
-        const p = new URLSearchParams(window.location.search);
-        if (p.get('n')) document.getElementById('nome_paciente').value = decodeURIComponent(p.get('n'));
-        if (p.get('c')) document.getElementById('cpf_paciente').value = decodeURIComponent(p.get('c'));
-        if (p.get('i')) document.getElementById('idade_paciente').value = decodeURIComponent(p.get('i'));
-    }
-    function imprimirAval() {
-        const n = document.getElementById('nome_paciente').value.trim() || "PACIENTE";
-        document.title = "AVAL_" + n.replace(/\s+/g, '_').toUpperCase();
-        window.print();
-    }
-</script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
