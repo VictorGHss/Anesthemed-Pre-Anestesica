@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação Pré Anestésica - AnestheMed</title>
-<link rel="stylesheet" href="./src/style.css">
-<script type="module" src="./src/app.ts"></script>
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
 
 <div class="container">
     <form id="avaliacao-form">
         <header class="header">
-            <div class="header-logo-anesthemed"><img src="logo.png" alt="AnestheMed"></div>
+            <div class="header-logo-anesthemed"><img src="./logo.png" alt="AnestheMed"></div>
             <div class="header-title">
                 <h2>Avaliação Pré Anestésica</h2>
                 <span>(42) 3026-2640</span>
@@ -39,35 +38,35 @@
             <div class="section-title">Histórico Clínico e Sintomatologia (S/N)</div>
             <div class="grid-3">
                 <div>
-                    <div class="sn-header"><span>S</span><span>N</span></div>
-                    <div class="row"><label><input type="radio" name="d1" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d1" value="N"><span class="btn-check"></span></label> 01. Hipertensão arterial</div>
-                    <div class="row"><label><input type="radio" name="d2" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d2" value="N"><span class="btn-check"></span></label> 02. Cardiopatia</div>
-                    <div class="row"><label><input type="radio" name="d3" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d3" value="N"><span class="btn-check"></span></label> 03. Dispnéia esforços</div>
-                    <div class="row"><label><input type="radio" name="d4" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d4" value="N"><span class="btn-check"></span></label> 04. Precordialgia</div>
-                    <div class="row"><label><input type="radio" name="d5" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d5" value="N"><span class="btn-check"></span></label> 05. Diabetes mellitus</div>
-                    <div class="row"><label><input type="radio" name="d6" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d6" value="N"><span class="btn-check"></span></label> 06. Outras endócrinas</div>
-                    <div class="row"><label><input type="radio" name="d7" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d7" value="N"><span class="btn-check"></span></label> 07. Pneumopatia</div>
+                    <div class="sn-header"><span>S</span><span>N</span><span></span></div>
+                    <div class="sn-row"><label><input type="radio" name="d1" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d1" value="N"><span class="btn-check"></span></label> <span class="sn-text">01. Hipertensão arterial</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d2" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d2" value="N"><span class="btn-check"></span></label> <span class="sn-text">02. Cardiopatia</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d3" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d3" value="N"><span class="btn-check"></span></label> <span class="sn-text">03. Dispnéia esforços</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d4" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d4" value="N"><span class="btn-check"></span></label> <span class="sn-text">04. Precordialgia</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d5" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d5" value="N"><span class="btn-check"></span></label> <span class="sn-text">05. Diabetes mellitus</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d6" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d6" value="N"><span class="btn-check"></span></label> <span class="sn-text">06. Outras endócrinas</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d7" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d7" value="N"><span class="btn-check"></span></label> <span class="sn-text">07. Pneumopatia</span></div>
                 </div>
                 <div>
-                    <div class="sn-header"><span>S</span><span>N</span></div>
-                    <div class="row"><label><input type="radio" name="d8" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d8" value="N"><span class="btn-check"></span></label> 08. Tabagismo <input type="text" name="d8_obs" style="width:70px; flex: none;"></div>
-                    <div class="row"><label><input type="radio" name="d9" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d9" value="N"><span class="btn-check"></span></label> 09. Hepatite / Renal</div>
-                    <div class="row"><label><input type="radio" name="d10" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d10" value="N"><span class="btn-check"></span></label> 10. Alergia med.</div>
-                    <div class="row"><label><input type="radio" name="d11" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d11" value="N"><span class="btn-check"></span></label> 11. Convulsão</div>
-                    <div class="row"><label><input type="radio" name="d12" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d12" value="N"><span class="btn-check"></span></label> 12. Sangramento</div>
-                    <div class="row"><label><input type="radio" name="d13" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d13" value="N"><span class="btn-check"></span></label> 13. Prótese dentária</div>
-                    <div class="row"><label><input type="radio" name="d14" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d14" value="N"><span class="btn-check"></span></label> 14. Gravidez?</div>
+                    <div class="sn-header"><span>S</span><span>N</span><span></span></div>
+                    <div class="sn-row"><label><input type="radio" name="d8" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d8" value="N"><span class="btn-check"></span></label> <span class="sn-text">08. Tabagismo <input type="text" name="d8_obs" style="width:60px; margin-left: 5px; flex: none;"></span></div>
+                    <div class="sn-row"><label><input type="radio" name="d9" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d9" value="N"><span class="btn-check"></span></label> <span class="sn-text">09. Hepatite / Renal</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d10" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d10" value="N"><span class="btn-check"></span></label> <span class="sn-text">10. Alergia med.</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d11" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d11" value="N"><span class="btn-check"></span></label> <span class="sn-text">11. Convulsão</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d12" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d12" value="N"><span class="btn-check"></span></label> <span class="sn-text">12. Sangramento</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d13" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d13" value="N"><span class="btn-check"></span></label> <span class="sn-text">13. Prótese dentária</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d14" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d14" value="N"><span class="btn-check"></span></label> <span class="sn-text">14. Gravidez?</span></div>
                 </div>
                 <div>
-                    <div class="sn-header"><span>S</span><span>N</span></div>
-                    <div class="row"><label><input type="radio" name="d15" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d15" value="N"><span class="btn-check"></span></label> 15. Anestesias ant.</div>
-                    <div class="row"><label><input type="radio" name="d16" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d16" value="N"><span class="btn-check"></span></label> 16. Complicações</div>
-                    <div class="row"><label><input type="radio" name="d17" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d17" value="N"><span class="btn-check"></span></label> 17. Outras doenças</div>
-                    <div class="row"><label><input type="radio" name="d18" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d18" value="N"><span class="btn-check"></span></label> 18. Emagrecedores</div>
-                    <div style="font-weight: bold; font-size: 9px; border-top: 1px solid #eee; margin: 5px 0; color: #95a5a6; text-align: center;">CRIANÇAS</div>
-                    <div class="row"><label><input type="radio" name="d19" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d19" value="N"><span class="btn-check"></span></label> 19. IVAS recente</div>
-                    <div class="row"><label><input type="radio" name="d20" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d20" value="N"><span class="btn-check"></span></label> 20. Diarréia recente</div>
-                    <div class="row"><label><input type="radio" name="d21" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d21" value="N"><span class="btn-check"></span></label> 21. Prematuro?</div>
+                    <div class="sn-header"><span>S</span><span>N</span><span></span></div>
+                    <div class="sn-row"><label><input type="radio" name="d15" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d15" value="N"><span class="btn-check"></span></label> <span class="sn-text">15. Anestesias ant.</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d16" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d16" value="N"><span class="btn-check"></span></label> <span class="sn-text">16. Complicações</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d17" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d17" value="N"><span class="btn-check"></span></label> <span class="sn-text">17. Outras doenças</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d18" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d18" value="N"><span class="btn-check"></span></label> <span class="sn-text">18. Emagrecedores</span></div>
+                    <div style="font-weight: bold; font-size: 9px; border-top: 1px solid #eee; margin: 5px 0; padding-top: 4px; color: #95a5a6; text-align: center;">CRIANÇAS</div>
+                    <div class="sn-row"><label><input type="radio" name="d19" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d19" value="N"><span class="btn-check"></span></label> <span class="sn-text">19. IVAS recente</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d20" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d20" value="N"><span class="btn-check"></span></label> <span class="sn-text">20. Diarréia recente</span></div>
+                    <div class="sn-row"><label><input type="radio" name="d21" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d21" value="N"><span class="btn-check"></span></label> <span class="sn-text">21. Prematuro?</span></div>
                 </div>
             </div>
         </section>
@@ -78,8 +77,8 @@
                 <textarea name="comentarios_positivos" style="border:none"></textarea>
                 <div class="row" style="margin-top:4px; border-top:1px solid #eee; padding-top:4px;">
                     <span class="label-text">ANTICOAGULANTES:</span>
-                    <label><input type="radio" name="atc" value="S"><span class="btn-check"></span> Sim</label>
-                    <label><input type="radio" name="atc" value="N"><span class="btn-check"></span> Não</label>
+                    <label style="margin-left:5px;"><input type="radio" name="atc" value="S"><span class="btn-check"></span> Sim</label>
+                    <label style="margin-left:5px;"><input type="radio" name="atc" value="N"><span class="btn-check"></span> Não</label>
                 </div>
             </section>
             <section class="section">
@@ -200,13 +199,14 @@
             </div>
         </footer>
 
-    <div class="buttons">
-        <button type="button" class="btn-clear" id="btn-clear">Limpar Tudo</button>
-        <button type="button" class="btn-share" id="btn-share">Enviar Link Médico</button>
-        <button type="button" class="btn-print" id="btn-print">Imprimir / PDF</button>
-    </div>
+        <div class="buttons">
+            <button type="button" class="btn-clear" id="btn-clear">Limpar Tudo</button>
+            <button type="button" class="btn-share" id="btn-share">Enviar Link Médico</button>
+            <button type="button" class="btn-print" id="btn-print">Imprimir / PDF</button>
+        </div>
     </form>
 </div>
+
 <script type="module" src="./src/app.ts"></script>
 </body>
 </html>

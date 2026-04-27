@@ -48,19 +48,20 @@ input[type="text"], input[type="number"], textarea {
 
 textarea { resize: none; width: 100%; box-sizing: border-box; flex-grow: 1; min-height: 85px; }
 
+/* --- MARCAÇÕES DO CHECKBOX/RADIO --- */
 input[type="radio"], input[type="checkbox"] { display: none; }
 
 .btn-check {
     display: inline-flex;
     align-items: center;
-    justify-content: center; 
-    width: 12px;
-    height: 12px;
+    justify-content: center;
+    width: 12px; 
+    height: 12px; 
     border: 1px solid var(--primary);
-    margin-right: 2px;
+    margin-right: 2px; 
     cursor: pointer;
-    background: #fff;
-    vertical-align: middle;
+    background: #fff; 
+    vertical-align: middle; 
     position: relative;
     box-sizing: border-box;
 }
@@ -76,35 +77,49 @@ input:checked + .btn-check::after {
     transform: translate(-50%, -50%); 
 }
 
-/* 1. Quando o valor for "S" (Sim): V bem MAIS GORDO (Stroke forte) */
+/* Quando for "S" (Sim): V bem gordo */
 input[value="S"]:checked + .btn-check::after {
     font-size: 14px; 
-    -webkit-text-stroke: 1.2px var(--primary); /* Engorda a fonte */
+    -webkit-text-stroke: 1.2px var(--primary);
 }
 
-/* 2. Quando o valor for "N" (Não): V BEM FINO (Sem stroke) */
-input[value="N"]:checked + .btn-check::after {
-    font-size: 11px; /* Ligeiramente menor */
-    -webkit-text-stroke: 0px transparent; /* Remove qualquer stroke */
-}
-
-/* 3. Estilo para Checkboxes (geralmente finos, como o 'Não') */
-input[type="checkbox"]:checked + .btn-check::after {
-    font-size: 11px;
+/* Quando for "N" (Não) ou checkbox padrão: V fino */
+input[value="N"]:checked + .btn-check::after,
+input[type="checkbox"]:not([value="S"]):checked + .btn-check::after {
+    font-size: 11px; 
     -webkit-text-stroke: 0px transparent;
 }
 
-/* 4. Estilo para o Status e ASA (Gordos para chamar atenção) */
+/* Status e ASA (Gordos para chamar atenção) */
 input[name="st"]:checked + .btn-check::after,
 input[name="asa"]:checked + .btn-check::after {
     font-size: 14px; 
     -webkit-text-stroke: 1.2px var(--primary);
 }
 
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+/* --- GRID DO HISTÓRICO CLÍNICO (ALINHAMENTO S/N PERFEITO) --- */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
 
-.sn-header { display: flex; font-weight: bold; font-size: 9px; color: #7f8c8d; margin-bottom: 2px; padding-left: 0; }
-.sn-header span { display: inline-block; width: 16px; text-align: center; margin-right: 0; } 
+.sn-header { 
+    display: grid; 
+    grid-template-columns: 20px 20px 1fr; 
+    gap: 4px; 
+    font-weight: bold; 
+    font-size: 9px; 
+    color: #7f8c8d; 
+    margin-bottom: 4px; 
+}
+.sn-header span { text-align: center; margin: 0; } 
+
+.sn-row { 
+    display: grid; 
+    grid-template-columns: 20px 20px 1fr; 
+    gap: 4px; 
+    align-items: center; 
+    margin-bottom: 4px; 
+}
+.sn-row label { display: flex; justify-content: center; margin: 0; }
+.sn-text { font-size: 11px; display: flex; align-items: center; white-space: nowrap; color: var(--primary); font-weight: bold;}
 
 .box-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; align-items: stretch; }
 .med-list-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
@@ -132,6 +147,34 @@ input[name="asa"]:checked + .btn-check::after {
     padding-bottom: 4px; height: 18px;
 }
 
+/* --- VISUALIZAÇÃO PARA CELULARES --- */
+@media screen and (max-width: 768px) {
+    body { font-size: 12px; }
+    .container { padding: 10px; min-height: auto; box-shadow: none; }
+    
+    .grid-3, .box-row, .med-list-cols, .grid-exams {
+        grid-template-columns: 1fr; gap: 15px;
+    }
+    .header { flex-direction: column; text-align: center; gap: 15px; }
+    .row { flex-direction: column; align-items: flex-start; gap: 10px; }
+    
+    .row:has(input[type="radio"]), .row:has(input[type="checkbox"]) {
+        flex-direction: row; align-items: center; flex-wrap: wrap;
+    }
+    
+    .form-group { width: 100%; flex-direction: column; align-items: flex-start; }
+    .form-group label { margin-bottom: 2px; }
+    
+    input[type="text"], input[type="number"] { width: 100% !important; box-sizing: border-box; }
+    
+    .sig-row { flex-direction: column; align-items: center; gap: 40px; margin-top: 40px; }
+    .sig-box { width: 100%; max-width: 300px; }
+    
+    .buttons { flex-direction: column; gap: 15px; }
+    .buttons button { width: 100%; padding: 15px; font-size: 14px; }
+}
+
+/* --- VISUALIZAÇÃO PARA IMPRESSÃO --- */
 @media print {
     .container { max-width: 100%; border: none; box-shadow: none; padding: 0; margin: 0; min-height: 276mm; }
     .buttons { display: none !important; }
