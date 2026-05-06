@@ -65,7 +65,7 @@
                     <div class="sn-row"><label><input type="radio" name="d18" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d18" value="N"><span class="btn-check"></span></label> <span class="sn-text">18. Anestesias anteriores</span></div>
                     <div class="sn-row"><label><input type="radio" name="d19" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d19" value="N"><span class="btn-check"></span></label> <span class="sn-text">19. Complicações anestésicas</span></div>
                     <div class="sn-row"><label><input type="radio" name="d20" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d20" value="N"><span class="btn-check"></span></label> <span class="sn-text">20. Outras doenças</span></div>
-                    <div style="font-weight: bold; font-size: 9px; border-top: 1px solid #eee; margin: 5px 0; padding-top: 4px; color: #95a5a6; text-align: center;">CRIANÇAS</div>
+                    <div style="font-weight: bold; font-size: 10px; border-top: 1px solid #eee; margin: 5px 0; padding-top: 4px; color: #95a5a6; text-align: center;">CRIANÇAS</div>
                     <div class="sn-row"><label><input type="radio" name="d21" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d21" value="N"><span class="btn-check"></span></label> <span class="sn-text">21. IVAS atual ou recente</span></div>
                     <div class="sn-row"><label><input type="radio" name="d22" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d22" value="N"><span class="btn-check"></span></label> <span class="sn-text">22. Diarréia recente</span></div>
                     <div class="sn-row"><label><input type="radio" name="d23" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d23" value="N"><span class="btn-check"></span></label> <span class="sn-text">23. Nasceu prematuro?</span></div>
@@ -73,12 +73,12 @@
             </div>
         </section>
 
-        <!-- PRIMEIRA LINHA DAS 4 CAIXAS -->
+        <!-- PRIMEIRA LINHA DAS 4 CAIXAS (ESTICAM JUNTAS) -->
         <div class="box-row">
             <section class="section">
                 <div class="section-title">COMENTAR DADOS POSITIVOS</div>
-                <div style="display: flex; flex-direction: column; flex: 1;">
-                    <textarea name="comentarios_positivos" style="border:none"></textarea>
+                <div class="section-content">
+                    <textarea name="comentarios_positivos" style="border:none; height: 100%;"></textarea>
                     <div class="row" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px;">
                         <span class="label-text">ANTICOAGULANTES:</span>
                         <label style="margin-left:5px;"><input type="radio" name="atc" value="S"><span class="btn-check"></span> Sim</label>
@@ -89,70 +89,72 @@
             
             <section class="section">
                 <div class="section-title">MEDICAMENTOS EM USO</div>
-                <div class="med-list-cols" style="flex: 1;">
-                    <div style="display: flex; flex-direction: column; justify-content: space-evenly;">
-                        <div class="med-item"><span>01</span><input type="text" name="med_1"></div>
-                        <div class="med-item"><span>02</span><input type="text" name="med_2"></div>
-                        <div class="med-item"><span>03</span><input type="text" name="med_3"></div>
-                        <div class="med-item"><span>04</span><input type="text" name="med_4"></div>
-                        <div class="med-item"><span>05</span><input type="text" name="med_5"></div>
-                        <div class="med-item"><span>06</span><input type="text" name="med_6"></div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; justify-content: space-evenly;">
-                        <div class="med-item"><span>07</span><input type="text" name="med_7"></div>
-                        <div class="med-item"><span>08</span><input type="text" name="med_8"></div>
-                        <div class="med-item"><span>09</span><input type="text" name="med_9"></div>
-                        <div class="med-item"><span>10</span><input type="text" name="med_10"></div>
-                        <div class="med-item"><span>11</span><input type="text" name="med_11"></div>
-                        <div class="med-item"><span>12</span><input type="text" name="med_12"></div>
+                <div class="section-content">
+                    <div class="med-list-cols">
+                        <div class="med-col">
+                            <div class="med-item"><span>01</span><input type="text" name="med_1"></div>
+                            <div class="med-item"><span>02</span><input type="text" name="med_2"></div>
+                            <div class="med-item"><span>03</span><input type="text" name="med_3"></div>
+                            <div class="med-item"><span>04</span><input type="text" name="med_4"></div>
+                            <div class="med-item"><span>05</span><input type="text" name="med_5"></div>
+                            <div class="med-item"><span>06</span><input type="text" name="med_6"></div>
+                        </div>
+                        <div class="med-col">
+                            <div class="med-item"><span>07</span><input type="text" name="med_7"></div>
+                            <div class="med-item"><span>08</span><input type="text" name="med_8"></div>
+                            <div class="med-item"><span>09</span><input type="text" name="med_9"></div>
+                            <div class="med-item"><span>10</span><input type="text" name="med_10"></div>
+                            <div class="med-item"><span>11</span><input type="text" name="med_11"></div>
+                            <div class="med-item"><span>12</span><input type="text" name="med_12"></div>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- SEGUNDA LINHA DAS 4 CAIXAS -->
+        <!-- SEGUNDA LINHA DAS 4 CAIXAS (ESTICAM JUNTAS) -->
         <div class="box-row">
             <section class="section">
                 <div class="section-title">EXAME FÍSICO</div>
-                <div style="display: flex; flex-direction: column; flex: 1; justify-content: space-evenly;">
+                <div class="section-content">
                     <div class="row" style="flex-wrap: nowrap;">
-                        <label>PESO:</label><input type="text" name="peso" style="width: 45px; flex: none;">
-                        <label style="margin-left: 5px;">ALTURA:</label><input type="text" name="altura" style="width: 45px; flex: none;">
-                        <label style="margin-left: 5px;">PA:</label><input type="text" name="pa" style="flex: 1;">
+                        <label>PESO:</label><input type="text" name="peso" style="width: 40px; flex: none;">
+                        <label style="margin-left: 5px;">ALTURA:</label><input type="text" name="altura" style="width: 40px; flex: none;">
+                        <label style="margin-left: 5px;">PA:</label><input type="text" name="pa" style="flex: 1; min-width: 0;">
                     </div>
                     
-                    <div class="row" style="justify-content: space-between;">
-                        <div style="display: flex; align-items: center;">
-                            <label>Mallampati:</label><input type="number" name="mallampati" style="width: 35px; flex: none;">
+                    <div class="row" style="flex-wrap: nowrap; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; flex: none;">
+                            <label>Mallampati:</label><input type="number" name="mallampati" style="width: 30px; flex: none;">
                         </div>
-                        <div style="display: flex; align-items: center;">
+                        <div style="display: flex; align-items: center; flex: none;">
                             <label style="margin-left: 5px;">DEM:</label>
-                            <label style="margin-left: 5px;"><input type="radio" name="dem" value=">12,5"><span class="btn-check"></span> &gt; 12,5</label>
-                            <label style="margin-left: 5px;"><input type="radio" name="dem" value="<12,5"><span class="btn-check"></span> &lt; 12,5</label>
+                            <label style="margin-left: 4px;"><input type="radio" name="dem" value=">12,5"><span class="btn-check"></span> &gt; 12,5</label>
+                            <label style="margin-left: 4px;"><input type="radio" name="dem" value="<12,5"><span class="btn-check"></span> &lt; 12,5</label>
                         </div>
                     </div>
                     
-                    <div class="row">
+                    <div class="row" style="flex-wrap: nowrap;">
                         <span class="label-text">Intubação Difícil?</span> 
                         <label><input type="radio" name="intubacao_dificil" value="S"><span class="btn-check"></span> S</label>
                         <label><input type="radio" name="intubacao_dificil" value="N"><span class="btn-check"></span> N</label>
 
                         <div style="display: flex; align-items: center; margin-left: auto;">
-                            <label>T:</label><input type="text" name="temperatura" style="width:35px; flex: none; margin-right: 5px;">
-                            <label><input type="radio" name="febre" value="Afeb"><span class="btn-check"></span> Afeb.</label>
-                            <label><input type="radio" name="febre" value="Feb"><span class="btn-check"></span> Feb.</label>
+                            <label>T:</label><input type="text" name="temperatura" style="width:30px; flex: none; margin-right: 4px;">
+                            <label><input type="radio" name="febre" value="Afeb"><span class="btn-check"></span> Afeb</label>
+                            <label><input type="radio" name="febre" value="Feb"><span class="btn-check"></span> Feb</label>
                         </div>
                     </div>
                     
                     <div class="row" style="flex-wrap: nowrap; align-items: center;">
                         <label>Resp:</label><input type="text" name="resp" style="flex: 1; min-width: 0;">
-                        <label style="margin: 0 2px;"><input type="checkbox" name="cpp_livres" value="S"><span class="btn-check"></span> CPP Livres</label>
+                        <label style="margin: 0 4px;"><input type="checkbox" name="cpp_livres" value="S"><span class="btn-check"></span> CPP Livres</label>
                         <label>Alt:</label><input type="text" name="resp_alt" style="width: 35px; flex: none;">
                     </div>
                     
                     <div class="row" style="flex-wrap: nowrap; align-items: center;">
                         <label>Cardio:</label><input type="text" name="cardio" style="flex: 1; min-width: 0;">
-                        <label style="margin: 0 2px;"><input type="checkbox" name="brnf" value="S"><span class="btn-check"></span> BRNF</label>
+                        <label style="margin: 0 4px;"><input type="checkbox" name="brnf" value="S"><span class="btn-check"></span> BRNF</label>
                         <label>Alt:</label><input type="text" name="cardio_alt" style="width: 35px; flex: none;">
                     </div>
                     
@@ -163,7 +165,7 @@
             
             <section class="section">
                 <div class="section-title">EXAMES COMPLEMENTARES</div>
-                <div style="display: flex; flex-direction: column; flex: 1; justify-content: space-evenly;">
+                <div class="section-content">
                     <div class="grid-exams">
                         <div class="form-group"><label>HB:</label><input type="text" name="ex_hb"></div>
                         <div class="form-group"><label>VG:</label><input type="text" name="ex_vg"></div>
