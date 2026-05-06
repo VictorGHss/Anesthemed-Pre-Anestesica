@@ -1,9 +1,9 @@
-/* RESET BÁSICO */
+/* RESET BÁSICO PARA EVITAR VAZAMENTOS E AJUSTAR LARGURAS */
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
-@page { size: A4 portrait; margin: 0; }
+@page { size: A4 portrait; margin: 4mm; }
 :root { --primary: #2c3e50; --border: #dcdde1; --bg: #f4f7f6; }
 
 body {
@@ -53,7 +53,6 @@ label, .label-text, span, strong {
     white-space: nowrap; font-size: 12px; 
 }
 
-/* O segredo para não vazar a tela: inputs curtos com classe separada */
 .short-input { width: 50px !important; flex: none !important; text-align: center; }
 
 input[type="text"], input[type="number"], textarea, .obs-input { 
@@ -202,52 +201,48 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 }
 
 /* ========================================================= */
-/* --- VISUALIZAÇÃO PARA IMPRESSÃO (A BLINDAGEM DO ANDROID) --- */
+/* --- VISUALIZAÇÃO PARA IMPRESSÃO (BLINDAGEM TOTAL) --- */
 /* ========================================================= */
 @media print {
-    @page { size: A4 portrait; margin: 0 !important; } 
+    /* Deixa o navegador gerenciar o tamanho da página A4 e tira as margens de erro */
+    @page { size: A4 portrait; margin: 5mm; } 
     
     html, body { 
-        width: 210mm !important;
-        height: 100% !important;
-        max-height: 297mm !important; /* Limite de segurança A4 */
+        width: 100% !important;
+        height: 100% !important; /* Sem forçar milímetros, o Android não surta */
         margin: 0 !important; 
         padding: 0 !important; 
         background: white !important;
-        font-size: 10.5px !important; /* Fonte um fio menor para dar folga */
+        font-size: 10.5px !important; /* A "mágica" para espremer no Android sem cortar nada */
         line-height: 1.15 !important;
-        overflow: hidden !important; /* Corta vazamentos na raiz */
     }
     
     .container { 
         width: 100% !important; 
-        height: 99% !important; 
-        max-height: 270mm !important; /* TAMANHO ULTRA SEGURO PARA ANDROID E IOS! (Serve até em folha Carta se o celular bugar) */
+        height: 100% !important; /* A folha assume exatamente 1 página disponível */
         margin: 0 !important; 
-        padding: 4mm 6mm !important; 
+        padding: 0 !important; /* A margem já foi dada no @page */
         border: none !important; 
         box-shadow: none !important; 
-        overflow: hidden !important; 
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
         display: flex !important;
         flex-direction: column !important;
+        page-break-inside: avoid !important;
     }
     
-    .section { margin-bottom: 1.5px !important; padding: 2px 6px !important; border-width: 1px !important; }
+    .section { margin-bottom: 2px !important; padding: 2px 4px !important; border-width: 1px !important; }
     
     .box-row { 
-        display: flex !important; flex-direction: row !important; gap: 10px !important; 
-        margin-bottom: 1.5px !important; width: 100% !important; 
-        flex: 1 1 auto !important; 
+        display: flex !important; flex-direction: row !important; gap: 8px !important; 
+        margin-bottom: 2px !important; width: 100% !important; 
+        flex: 1 1 auto !important; /* Deixa esticar naturalmente para preencher espaços */
         min-height: 0 !important; 
     }
     .box-row .section { width: 50% !important; display: flex !important; flex-direction: column !important; flex: 1 !important; }
     
-    .section-title { margin: -2px -6px 2px -6px !important; font-size: 9.5px !important; padding: 2px !important; }
+    .section-title { margin: -2px -4px 2px -4px !important; font-size: 9.5px !important; padding: 2px !important; }
     
     .header { padding-bottom: 2px !important; margin-bottom: 2px !important; }
-    .header-logo-anesthemed img { height: 48px !important; } /* Menores para garantir espaço */
+    .header-logo-anesthemed img { height: 45px !important; } /* Diminuímos para garantir espaço extra na folha */
     .header-logo-inovare img { height: 30px !important; }
     
     .sn-row { margin-bottom: 1px !important; }
@@ -256,12 +251,14 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
     input[type="text"], input[type="number"], .obs-input { height: 14px !important; font-size: 12px !important; padding: 0 !important; }
     textarea { min-height: 20px !important; font-size: 12px !important; }
     
+    /* Posição da Assinatura blindada */
     .signatures { 
         flex: none !important; 
         margin-top: auto !important; 
         padding-top: 0 !important; 
+        padding-bottom: 5px !important;
     }
-    .sig-row { margin-top: 35px !important; } /* Margem equilibrada e segura para as assinaturas */
+    .sig-row { margin-top: 30px !important; } /* Espaço garantido pro Doutor assinar sem empurrar a folha */
     
     .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
     .med-list-cols { display: flex !important; flex-direction: row !important; gap: 8px !important; }
