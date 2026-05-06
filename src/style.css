@@ -23,28 +23,28 @@ body {
 
 .header { 
     display: flex; justify-content: space-between; align-items: center; 
-    border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-bottom: 8px; gap: 10px;
+    border-bottom: 2px solid var(--primary); padding-bottom: 6px; margin-bottom: 6px; gap: 10px;
     flex: none;
 }
 .header-logo-anesthemed img { height: 75px; width: auto; }
 .header-logo-inovare img { height: 48px; width: auto; }
 
 .header-title { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.header-title h2 { margin: 0; font-size: 18px; text-transform: uppercase; text-align: center; }
-.header-title span { font-size: 13px; font-weight: bold; margin-top: 4px; color: var(--primary); }
+.header-title h2 { margin: 0; font-size: 17px; text-transform: uppercase; text-align: center; }
+.header-title span { font-size: 13px; font-weight: bold; margin-top: 3px; color: var(--primary); }
 
 .section { 
     border: 2px solid var(--primary); 
-    margin-bottom: 6px; padding: 6px 10px; border-radius: 4px; display: flex; flex-direction: column; 
+    margin-bottom: 4px; padding: 4px 8px; border-radius: 4px; display: flex; flex-direction: column; 
     flex: none; 
 }
 .section-title { 
     background-color: #f8f9fa; font-weight: bold; padding: 4px; 
-    margin: -6px -10px 6px -10px; text-align: center; text-transform: uppercase; 
+    margin: -4px -8px 4px -8px; text-align: center; text-transform: uppercase; 
     font-size: 11px; color: var(--primary); border-bottom: 2px solid var(--primary);
 }
 
-.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 4px; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 3px; }
 .form-group { display: flex; align-items: center; flex: 1; min-width: 0; }
 .form-group label { white-space: nowrap; }
 
@@ -60,7 +60,7 @@ input[type="text"], input[type="number"], textarea, .obs-input {
 }
 
 input::placeholder { font-size: 11px; font-weight: normal; color: #95a5a6; }
-textarea { height: auto; resize: none; width: 100%; flex: 1; min-height: 40px; }
+textarea { height: auto; resize: none; width: 100%; flex: 1; min-height: 35px; }
 
 /* --- MARCAÇÕES DO CHECKBOX/RADIO --- */
 input[type="radio"], input[type="checkbox"] { display: none; }
@@ -84,41 +84,46 @@ input[name="st"]:checked + .btn-check::after,
 input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-stroke: 1px var(--primary); }
 
 /* --- GRID DO HISTÓRICO CLÍNICO --- */
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 
 .sn-header { 
-    display: grid; grid-template-columns: 22px 22px 1fr; gap: 4px; 
-    font-weight: bold; font-size: 10px; color: #7f8c8d; margin-bottom: 4px; 
+    display: grid; grid-template-columns: 22px 22px 1fr; gap: 2px; 
+    font-weight: bold; font-size: 10px; color: #7f8c8d; margin-bottom: 2px; 
 }
 .sn-header span { text-align: center; margin: 0; } 
 
 .sn-row { 
-    display: grid; grid-template-columns: 22px 22px 1fr; gap: 4px; 
-    align-items: center; margin-bottom: 5px; 
+    display: grid; grid-template-columns: 22px 22px 1fr; gap: 2px; 
+    align-items: center; margin-bottom: 4px; 
 }
 .sn-row label { display: flex; justify-content: center; margin: 0; }
 .sn-text { font-size: 12px; display: flex; align-items: center; white-space: nowrap; color: var(--primary); font-weight: bold;}
 
-/* --- CAIXAS DINÂMICAS: ESTICAM JUNTAS, DIVIDEM ESPAÇO E NÃO VAZAM --- */
+/* --- CAIXAS DINÂMICAS: ESTICAM JUNTAS E DIVIDEM ESPAÇO SEM VAZAR (BUG CORRIGIDO) --- */
 .box-row { 
-    display: flex; flex-direction: row; gap: 10px; margin-bottom: 6px; 
+    display: flex; flex-direction: row; gap: 10px; margin-bottom: 4px; 
     flex: 1 1 auto; 
     min-height: 0; 
+    width: 100%; /* Garante que a linha não passe de 100% da página */
 }
 .box-row .section { 
-    width: 50%; margin-bottom: 0; display: flex; flex-direction: column; flex: 1 1 auto; 
+    /* flex: 1 faz com que a caixa calcule automaticamente os 50% descontando os 10px do gap, evitando o vazamento */
+    flex: 1; 
+    min-width: 0; 
+    margin-bottom: 0; 
+    display: flex; flex-direction: column; 
 }
 .section-content {
     display: flex; flex-direction: column; flex: 1 1 auto; 
     justify-content: space-between; 
-    gap: 4px; padding-top: 4px; min-height: 0;
+    gap: 3px; padding-top: 3px; min-height: 0;
 }
 .section-content .row {
     margin-bottom: 0; 
 }
 
 /* MEDICAMENTOS */
-.med-list-cols { display: flex; flex-direction: row; gap: 15px; flex: 1; width: 100%; min-width: 0; }
+.med-list-cols { display: flex; flex-direction: row; gap: 10px; flex: 1; width: 100%; min-width: 0; }
 .med-col { display: flex; flex-direction: column; flex: 1; justify-content: space-between; min-width: 0; }
 .med-item { display: flex; align-items: center; width: 100%; min-width: 0; }
 .med-item span { font-size: 11px; font-weight: bold; margin-right: 4px; width: 16px; color: #bdc3c7 !important; flex: none; }
@@ -132,10 +137,10 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
     gap: 2px 10px; width: 100%; flex: 1; align-items: center; 
 }
 
-/* ASSINATURAS: Reduzi o margin-top para garantir segurança na primeira página */
+/* ASSINATURAS */
 .signatures { margin-top: auto; padding: 5px 0 0 0; flex: none; }
-.sig-row { display: flex; justify-content: space-around; gap: 15px; margin-top: 25px; } 
-.sig-box { border-top: 1.2px solid var(--primary); text-align: center; width: 250px; padding-top: 4px; font-size: 12px; font-weight: bold; }
+.sig-row { display: flex; justify-content: space-around; gap: 15px; margin-top: 45px; } 
+.sig-box { border-top: 1.5px solid var(--primary); text-align: center; width: 250px; padding-top: 6px; font-size: 12px; font-weight: bold; }
 
 .buttons { display: flex; justify-content: center; gap: 10px; padding: 10px; flex: none;}
 .buttons button { 
@@ -167,10 +172,12 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 @media print {
     @page { size: A4 portrait; margin: 5mm; }
     body { margin: 0; background: white; }
+    
     .container { 
-        height: 275mm !important; /* Altura segura com margem de sobra. */
-        max-height: 275mm !important; 
-        overflow: hidden; /* TRAVA DEFINITIVA: Bloqueia vazamentos proíbindo página 2 */
+        height: 98vh !important; 
+        max-height: 98vh !important; 
+        overflow: hidden !important; 
+        page-break-inside: avoid;
         max-width: 100%; 
         width: 100%; 
         margin: 0; 
@@ -178,5 +185,11 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
         border: none; 
         box-shadow: none; 
     }
+    
+    .section { margin-bottom: 3px; padding: 3px 8px; }
+    .box-row { margin-bottom: 3px; }
+    
+    .sig-row { margin-top: 45px !important; }
+    
     .buttons { display: none !important; }
 }
