@@ -15,7 +15,7 @@ body {
 
 .container { 
     background-color: #fff; max-width: 850px; margin: 0 auto; 
-    padding: 10px 25px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 10px 25px 10px 25px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
     display: flex; flex-direction: column; min-height: 100vh; 
 }
 
@@ -26,8 +26,8 @@ body {
     border-bottom: 2px solid var(--primary); padding-bottom: 6px; margin-bottom: 6px; gap: 10px;
     flex: none;
 }
-.header-logo-anesthemed img { height: 70px; width: auto; }
-.header-logo-inovare img { height: 45px; width: auto; }
+.header-logo-anesthemed img { height: 75px; width: auto; }
+.header-logo-inovare img { height: 48px; width: auto; }
 
 .header-title { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .header-title h2 { margin: 0; font-size: 17px; text-transform: uppercase; text-align: center; }
@@ -54,7 +54,7 @@ label, .label-text, span, strong {
 }
 
 /* O segredo para não vazar a tela: inputs curtos (idade, horas) com classe separada */
-.short-input { width: 50px !important; flex: none !important; }
+.short-input { width: 50px !important; flex: none !important; text-align: center; }
 
 input[type="text"], input[type="number"], textarea, .obs-input { 
     border: none; border-bottom: 1px solid var(--primary); flex: 1; 
@@ -105,7 +105,7 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 /* --- CAIXAS DINÂMICAS: ESTICAM JUNTAS E DIVIDEM ESPAÇO --- */
 .box-row { 
     display: flex; flex-direction: row; gap: 10px; margin-bottom: 4px; 
-    flex: 1 1 auto; 
+    flex: 1 1 auto; /* Elástico ligado! As caixas esticam para cobrir buracos */
     min-height: 0; 
     width: 100%; 
 }
@@ -127,10 +127,8 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 
 /* EXAMES COMPLEMENTARES */
 .grid-exams { 
-    display: grid; 
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); 
-    grid-template-rows: repeat(5, 1fr); 
-    gap: 2px 10px; width: 100%; flex: 1; align-items: center; 
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); 
+    grid-template-rows: repeat(5, 1fr); gap: 2px 10px; width: 100%; flex: 1; align-items: center; 
 }
 
 /* ASSINATURAS */
@@ -146,7 +144,6 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 .btn-print { background-color: #3498db; }
 .btn-share { background-color: #2ecc71; }
 .btn-clear { background-color: #e74c3c; }
-
 
 /* ========================================================= */
 /* --- VISUALIZAÇÃO RESPONSIVA PARA CELULARES --- */
@@ -204,7 +201,7 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 }
 
 /* ========================================================= */
-/* --- VISUALIZAÇÃO PARA IMPRESSÃO (O APERTO FINAL) --- */
+/* --- VISUALIZAÇÃO PARA IMPRESSÃO --- */
 /* ========================================================= */
 @media print {
     @page { size: A4 portrait; margin: 0; } 
@@ -215,16 +212,16 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
         margin: 0 !important; 
         padding: 0 !important; 
         background: white !important;
-        font-size: 11px !important; /* Fonte ligeiramente menor para salvar a folha */
-        line-height: 1.15 !important;
+        font-size: 11.5px !important; 
+        line-height: 1.2 !important;
     }
     
     .container { 
         width: 100% !important; 
-        height: 100% !important; 
-        max-height: 100% !important; 
+        height: 285mm !important; /* Limite de altura super seguro para evitar página 2 */
+        max-height: 285mm !important; 
         margin: 0 !important; 
-        padding: 4mm 6mm !important; /* Reduzi a margem superior para 4mm */
+        padding: 6mm 8mm !important; 
         border: none !important; 
         box-shadow: none !important; 
         overflow: hidden !important; 
@@ -233,28 +230,42 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
         flex-direction: column !important;
     }
     
-    /* Aperto de parafusos severo */
-    .section { margin-bottom: 1.5px !important; padding: 2px 6px !important; border-width: 1.5px !important; }
-    .box-row { margin-bottom: 1.5px !important; }
-    .section-title { margin: -2px -6px 2px -6px !important; font-size: 10px !important; padding: 2px !important; }
+    .section { margin-bottom: 2px !important; padding: 3px 6px !important; border-width: 1.5px !important; }
     
-    .header { padding-bottom: 2px !important; margin-bottom: 2px !important; }
-    .header-logo-anesthemed img { height: 55px !important; } /* Diminuí a logo para sobrar espaço */
+    /* A MAGICA VOLTOU: O flex: 1 faz as caixas sugarem os buracos em branco */
+    .box-row { 
+        display: flex !important; flex-direction: row !important; gap: 10px !important; 
+        margin-bottom: 2px !important; width: 100% !important; 
+        flex: 1 1 auto !important; 
+        min-height: 0 !important; 
+    }
+    .box-row .section { width: 50% !important; display: flex !important; flex-direction: column !important; flex: 1 !important; }
+    
+    .section-title { margin: -3px -6px 3px -6px !important; font-size: 10px !important; padding: 2px !important; }
+    
+    .header { padding-bottom: 4px !important; margin-bottom: 4px !important; }
+    .header-logo-anesthemed img { height: 55px !important; } 
     .header-logo-inovare img { height: 35px !important; }
     
-    .sn-row { margin-bottom: 1px !important; }
-    .med-item { margin-bottom: 0px !important; }
+    .sn-row { margin-bottom: 1.5px !important; }
+    .med-item { margin-bottom: 1px !important; }
     
-    input[type="text"], input[type="number"], textarea { height: 14px !important; font-size: 12px !important; }
+    input[type="text"], input[type="number"], .obs-input { height: 14px !important; font-size: 12px !important; padding: 0 !important; }
+    textarea { min-height: 20px !important; font-size: 12px !important; }
     
-    .sig-row { margin-top: 15px !important; } /* Puxei as assinaturas pra cima com força */
+    /* ESCUDO DA ASSINATURA: Imune ao crescimento das caixas */
+    .signatures { 
+        flex: none !important; 
+        margin-top: 10px !important; 
+        padding-top: 0 !important; 
+    }
+    /* Espaço fixo e generoso para assinar */
+    .sig-row { margin-top: 45px !important; } 
     
-    .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
-    .box-row { display: flex !important; flex-direction: row !important; gap: 10px !important; width: 100% !important; }
-    .box-row .section { width: 50% !important; display: flex !important; flex-direction: column !important; }
-    .med-list-cols { display: flex !important; flex-direction: row !important; }
-    .grid-exams { display: grid !important; grid-template-columns: 1fr 1fr !important; }
-    .pc-nowrap { flex-wrap: nowrap !important; }
+    .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+    .med-list-cols { display: flex !important; flex-direction: row !important; gap: 8px !important; }
+    .grid-exams { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2px 8px !important; }
+    .pc-nowrap { flex-wrap: nowrap !important; gap: 4px !important; }
     
     .buttons { display: none !important; }
 }
