@@ -1,445 +1,182 @@
-/* RESET BÁSICO PARA EVITAR VAZAMENTOS E AJUSTAR LARGURAS */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-@page { size: A4 portrait; margin: 4mm; }
+/* RESET BÁSICO */
+*, *::before, *::after { box-sizing: border-box; }
+@page { size: A4 portrait; margin: 8mm; } /* Margem segura universal */
 :root { --primary: #2c3e50; --border: #dcdde1; --bg: #f4f7f6; }
 
-body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background-color: var(--bg);
-    margin: 0; padding: 0; font-size: 12px; line-height: 1.3; 
-    color: var(--primary); -webkit-print-color-adjust: exact; print-color-adjust: exact;
-}
+body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg); margin: 0; padding: 0; font-size: 12px; line-height: 1.3; color: var(--primary); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-.container { 
-    background-color: #fff; max-width: 850px; margin: 0 auto; 
-    padding: 10px 25px 10px 25px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    display: flex; flex-direction: column; min-height: 100vh; 
-}
-
+/* CONTAINER (Desktop) */
+.container { background-color: #fff; max-width: 850px; margin: 0 auto; padding: 10px 25px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: flex; flex-direction: column; min-height: 100vh; }
 #avaliacao-form { display: flex; flex-direction: column; flex: 1; height: 100%; }
 
-.header { 
-    display: flex; justify-content: space-between; align-items: center; 
-    border-bottom: 2px solid var(--primary); padding-bottom: 6px; margin-bottom: 6px; gap: 10px;
-    flex: none;
-}
-.header-logo-anesthemed img { height: 75px; width: auto; }
-.header-logo-inovare img { height: 48px; width: auto; }
-
+/* HEADER */
+.header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary); padding-bottom: 6px; margin-bottom: 6px; gap: 10px; flex: 0 0 auto; }
+.header-logo-anesthemed img { height: 70px; width: auto; }
+.header-logo-inovare img { height: 45px; width: auto; }
 .header-title { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .header-title h2 { margin: 0; font-size: 17px; text-transform: uppercase; text-align: center; }
 .header-title span { font-size: 13px; font-weight: bold; margin-top: 3px; color: var(--primary); }
 
-.section { 
-    border: 2px solid var(--primary); 
-    margin-bottom: 4px; padding: 4px 8px; border-radius: 4px; display: flex; flex-direction: column; 
-    flex: none; 
-}
-.section-title { 
-    background-color: #f8f9fa; font-weight: bold; padding: 4px; 
-    margin: -4px -8px 4px -8px; text-align: center; text-transform: uppercase; 
-    font-size: 11px; color: var(--primary); border-bottom: 2px solid var(--primary);
-}
+/* SECTION GERAL */
+.section { border: 2px solid var(--primary); margin-bottom: 4px; padding: 4px 8px; border-radius: 4px; display: flex; flex-direction: column; flex: 0 0 auto; }
+.section-title { background-color: #f8f9fa; font-weight: bold; padding: 4px; margin: -4px -8px 4px -8px; text-align: center; text-transform: uppercase; font-size: 11px; color: var(--primary); border-bottom: 2px solid var(--primary); }
 
+/* FORMS & LAYOUT */
 .row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 3px; }
 .form-group { display: flex; align-items: center; flex: 1; min-width: 0; }
-.form-group label { white-space: nowrap; }
-
-label, .label-text, span, strong { 
-    margin-right: 4px; font-weight: bold; color: var(--primary) !important; 
-    white-space: nowrap; font-size: 12px; 
-}
-
+label, .label-text, span, strong { margin-right: 4px; font-weight: bold; color: var(--primary) !important; white-space: nowrap; font-size: 12px; }
 .short-input { width: 50px !important; flex: none !important; text-align: center; }
-
-input[type="text"], input[type="number"], textarea, .obs-input { 
-    border: none; border-bottom: 1px solid var(--primary); flex: 1; 
-    padding: 0px 2px; font-size: 13px; font-weight: bold; outline: none; background: transparent; color: #000;
-    min-width: 0; height: 16px;
-}
-
+input[type="text"], input[type="number"], textarea, .obs-input { border: none; border-bottom: 1px solid var(--primary); flex: 1; padding: 0px 2px; font-size: 13px; font-weight: bold; outline: none; background: transparent; color: #000; min-width: 0; height: 16px; }
 input::placeholder { font-size: 11px; font-weight: normal; color: #95a5a6; }
-textarea { height: auto; resize: none; width: 100%; flex: 1; min-height: 35px; }
+textarea { height: auto; resize: none; width: 100%; flex: 1; min-height: 30px; }
 
-/* --- MARCAÇÕES DO CHECKBOX/RADIO --- */
+/* RADIOS & CHECKS */
 input[type="radio"], input[type="checkbox"] { display: none; }
-
-.btn-check {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 14px; height: 14px; border: 1px solid var(--primary);
-    margin-right: 2px; cursor: pointer; background: #fff; 
-    vertical-align: middle; position: relative;
-}
-
-input:checked + .btn-check::after {
-    content: "✔"; font-weight: 900; position: absolute; color: var(--primary); 
-    display: block; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-}
-
+.btn-check { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border: 1px solid var(--primary); margin-right: 2px; cursor: pointer; background: #fff; vertical-align: middle; position: relative; }
+input:checked + .btn-check::after { content: "✔"; font-weight: 900; position: absolute; color: var(--primary); display: block; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 input[value="S"]:checked + .btn-check::after { font-size: 16px; -webkit-text-stroke: 1px var(--primary); }
-input[value="N"]:checked + .btn-check::after,
-input[type="checkbox"]:not([value="S"]):checked + .btn-check::after { font-size: 12px; -webkit-text-stroke: 0px transparent; }
-input[name="st"]:checked + .btn-check::after,
-input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-stroke: 1px var(--primary); }
+input[value="N"]:checked + .btn-check::after, input[type="checkbox"]:not([value="S"]):checked + .btn-check::after { font-size: 12px; -webkit-text-stroke: 0px transparent; }
+input[name="st"]:checked + .btn-check::after, input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-stroke: 1px var(--primary); }
 
-/* --- GRID DO HISTÓRICO CLÍNICO --- */
+/* GRIDS */
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-
-.sn-header { 
-    display: grid; grid-template-columns: 22px 22px 1fr; gap: 2px; 
-    font-weight: bold; font-size: 10px; color: #7f8c8d; margin-bottom: 2px; 
-}
-.sn-header span { text-align: center; margin: 0; } 
-
-.sn-row { 
-    display: grid; grid-template-columns: 22px 22px 1fr; gap: 2px; 
-    align-items: center; margin-bottom: 4px; 
-}
+.sn-header { display: grid; grid-template-columns: 22px 22px 1fr; gap: 2px; font-weight: bold; font-size: 10px; color: #7f8c8d; margin-bottom: 2px; }
+.sn-header span { text-align: center; margin: 0; }
+.sn-row { display: grid; grid-template-columns: 22px 22px 1fr; gap: 2px; align-items: center; margin-bottom: 4px; }
 .sn-row label { display: flex; justify-content: center; margin: 0; }
 .sn-text { font-size: 12px; display: flex; align-items: center; white-space: nowrap; color: var(--primary); font-weight: bold;}
 
-/* --- CAIXAS DINÂMICAS --- */
-.box-row { 
-    display: flex; flex-direction: row; gap: 10px; margin-bottom: 4px; 
-    flex: 1 1 auto; 
-    min-height: 0; 
-    width: 100%; 
-}
-.box-row .section { 
-    flex: 1; min-width: 0; margin-bottom: 0; display: flex; flex-direction: column; 
-}
-.section-content {
-    display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-between; 
-    gap: 3px; padding-top: 3px; padding-bottom: 3px; min-height: 0;
-}
+/* BOX ROW - O MEIO ELÁSTICO */
+.box-row { display: flex; flex-direction: row; gap: 10px; margin-bottom: 4px; flex: 1 1 0%; min-height: 0; width: 100%; }
+.box-row .section { flex: 1; min-width: 0; margin-bottom: 0; display: flex; flex-direction: column; }
+.section-content { display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-between; gap: 3px; padding-top: 3px; padding-bottom: 3px; min-height: 0; }
 .section-content .row { margin-bottom: 0; }
 
-/* MEDICAMENTOS */
+/* MEDICAMENTOS & EXAMES */
 .med-list-cols { display: flex; flex-direction: row; gap: 10px; flex: 1; width: 100%; min-width: 0; }
 .med-col { display: flex; flex-direction: column; flex: 1; justify-content: space-between; min-width: 0; padding-bottom: 2px; }
 .med-item { display: flex; align-items: center; width: 100%; min-width: 0; margin-bottom: 2px; }
 .med-item span { font-size: 11px; font-weight: bold; margin-right: 4px; width: 16px; color: #bdc3c7 !important; flex: none; }
-.med-item input { flex: 1; min-width: 0; height: 14px; } 
+.med-item input { flex: 1; min-width: 0; height: 14px; }
+.grid-exams { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(5, 1fr); gap: 2px 10px; width: 100%; flex: 1; align-items: center; }
 
-/* EXAMES COMPLEMENTARES */
-.grid-exams { 
-    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); 
-    grid-template-rows: repeat(5, 1fr); gap: 2px 10px; width: 100%; flex: 1; align-items: center; 
-}
-
-/* ASSINATURAS */
-.signatures { margin-top: auto; padding: 5px 0 0 0; flex: none; }
-.sig-row { display: flex; justify-content: space-around; gap: 15px; margin-top: 45px; } 
+/* ASSINATURA BLINDADA NA TELA */
+.signatures { flex: 0 0 75px; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 10px; margin-top: 10px; }
+.sig-row { display: flex; justify-content: space-around; gap: 15px; }
 .sig-box { border-top: 1.5px solid var(--primary); text-align: center; width: 250px; padding-top: 6px; font-size: 12px; font-weight: bold; }
 
+/* BUTTONS */
 .buttons { display: flex; justify-content: center; gap: 10px; padding: 10px; flex: none;}
-.buttons button { 
-    padding: 8px 15px; border: none; border-radius: 4px; font-weight: bold; 
-    color: white; cursor: pointer; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
+.buttons button { padding: 8px 15px; border: none; border-radius: 4px; font-weight: bold; color: white; cursor: pointer; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 .btn-print { background-color: #3498db; }
 .btn-share { background-color: #2ecc71; }
 .btn-clear { background-color: #e74c3c; }
 
-
-/* ========================================================= */
-/* --- VISUALIZAÇÃO RESPONSIVA PARA CELULARES --- */
-/* ========================================================= */
+/* MOBILE */
 .pc-nowrap { flex-wrap: nowrap; }
-
 @media screen and (max-width: 768px) {
     body { font-size: 14px; overflow-x: hidden; }
-    
-    .container { 
-        padding: 15px; height: auto !important; min-height: auto; 
-        display: block; box-shadow: none; width: 100%; max-width: 100vw;
-        overflow-x: hidden;
-    }
-    
+    .container { padding: 15px; height: auto !important; min-height: auto; display: block; box-shadow: none; width: 100%; max-width: 100vw; overflow-x: hidden; }
     label, .label-text, span, strong { white-space: normal !important; }
-    
     #avaliacao-form { height: auto; display: flex; flex-direction: column; }
-    
     .pc-nowrap { flex-wrap: wrap !important; gap: 10px; }
-    
     .box-row { flex-direction: column !important; display: flex; height: auto; width: 100%; }
     .box-row .section { width: 100% !important; height: auto; flex: none; margin-bottom: 12px; }
     .section-content { justify-content: flex-start; gap: 10px; height: auto; }
-    
-    .row:has(input[type="radio"]), .row:has(input[type="checkbox"]), div[style*="display: flex"] { 
-        flex-direction: row; flex-wrap: wrap !important; align-items: center !important; 
-    }
-    
+    .row:has(input[type="radio"]), .row:has(input[type="checkbox"]), div[style*="display: flex"] { flex-direction: row; flex-wrap: wrap !important; align-items: center !important; }
     .btn-check { width: 24px; height: 24px; margin-right: 6px; }
     input:checked + .btn-check::after { font-size: 20px !important; }
     input[value="S"]:checked + .btn-check::after { font-size: 22px !important; }
-    input[name="st"]:checked + .btn-check::after,
-    input[name="asa"]:checked + .btn-check::after { font-size: 24px !important; }
-    
+    input[name="st"]:checked + .btn-check::after, input[name="asa"]:checked + .btn-check::after { font-size: 24px !important; }
     .sn-header, .sn-row { grid-template-columns: 34px 34px 1fr; gap: 8px; width: 100%; }
-    .sn-text { font-size: 14px; white-space: normal; width: 100%; display: flex; flex-wrap: wrap; align-items: center; } 
-    
-    input[type="text"]:not(.short-input), input[type="number"]:not(.short-input), .obs-input { 
-        width: 100% !important; height: 35px; font-size: 16px; margin-top: 4px;
-    }
+    .sn-text { font-size: 14px; white-space: normal; width: 100%; display: flex; flex-wrap: wrap; align-items: center; }
+    input[type="text"]:not(.short-input), input[type="number"]:not(.short-input), .obs-input { width: 100% !important; height: 35px; font-size: 16px; margin-top: 4px; }
     .short-input { height: 30px !important; font-size: 14px; width: 60px !important; }
-
     textarea { min-height: 80px; font-size: 16px; }
     .med-item input { height: 30px; }
-    
     .grid-3, .med-list-cols, .grid-exams { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-    
     .header { flex-direction: column; text-align: center; gap: 15px; }
+    .signatures { margin-top: 20px; flex: none; display: block; }
     .sig-row { flex-direction: column; align-items: center; gap: 40px; margin-top: 40px !important; }
     .sig-box { width: 100%; max-width: 300px; font-size: 14px; }
-    
     .buttons { flex-direction: column; gap: 12px; padding: 20px 0; }
     .buttons button { width: 100%; padding: 18px; font-size: 16px; margin: 0;}
 }
 
-/* ========================================================= */
-/* --- VISUALIZAÇÃO PARA IMPRESSÃO (BLINDAGEM TOTAL v2) --- */
-/* ========================================================= */
+/* O SANTO GRAAL DA IMPRESSÃO (iOS e ANDROID VENCIDOS) */
 @media print {
-    /*
-     * ════════════════════════════════════════════════════════════════════
-     * POR QUE A v1 FALHOU NO IOS:
-     *
-     * CSS `overflow:hidden` controla renderização visual, NÃO o algoritmo
-     * de paginação. O motor de impressão do iOS calcula as quebras de página
-     * ANTES de aplicar overflow. Logo, um container de 287mm com overflow:hidden
-     * numa página de 267mm → iOS cria página 2 normalmente, ignorando o clip.
-     *
-     * A ÚNICA forma de garantir 1 página é o conteúdo ser genuinamente
-     * menor que a altura imprimível disponível em cada plataforma.
-     *
-     * ────────────────────────────────────────────────────────────────────
-     * MAPA DE ALTURAS IMPRIMÍVEIS POR PLATAFORMA:
-     *
-     *  iOS Safari : margem mínima forçada pela Apple = 15mm top+bottom
-     *               → altura útil = 297 - 30mm = 267mm
-     *               (margin:0 ou menor é IGNORADO; iOS usa 15mm de qualquer jeito)
-     *
-     *  Android Chrome: soma @page margin + ~6mm de "platform margin" por lado
-     *                  → com @page margin:15mm → efetivo 21mm/lado
-     *                  → altura útil = 297 - 42mm = 255mm
-     *
-     *  Desktop (Chrome/Firefox/Edge): respeita @page exatamente
-     *                  → com @page margin:15mm → altura útil = 267mm
-     *
-     * ────────────────────────────────────────────────────────────────────
-     * ESTRATÉGIA ESCOLHIDA:
-     *
-     * @page { margin: 15mm 10mm }
-     *   → Como 15mm ≥ mínimo do iOS, o iOS NÃO adiciona margem extra.
-     *   → Android fica com 255mm de área útil (o caso mais restritivo).
-     *   → Desktop fica com 267mm.
-     *
-     * .container { height: 252mm }   ← 3mm abaixo do Android (255mm)
-     *   → Android: cabe com 3mm de sobra.
-     *   → iOS/Desktop: 15mm de margem inferior elegante.
-     *   → overflow:hidden age apenas como rede de segurança cosmética,
-     *     nunca como mecanismo estrutural de paginação.
-     * ════════════════════════════════════════════════════════════════════
-     */
-
-    /* ─── 1. @PAGE: 15mm ≥ mínimo iOS → sem margem extra em nenhuma plataforma ─── */
-    @page {
-        size: A4 portrait;
-        margin: 15mm 10mm;
-    }
-
-    /* ─── 2. HTML/BODY: reset limpo, sem forçar dimensões (o @page controla) ─── */
-    html, body {
-        width: 100% !important;
-        height: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
+    @page { size: A4 portrait; margin: 8mm; } 
+    
+    html, body { 
+        width: 100% !important; 
+        height: 100% !important; /* MÁGICA: Pega a altura exata que o celular/PC determinar */
+        margin: 0 !important; 
+        padding: 0 !important; 
         background: white !important;
-        overflow: hidden !important;
-        /* 9.5px garante que as seções fixas cabem dentro dos 252mm */
-        font-size: 9.5px !important;
-        line-height: 1.2 !important;
+        font-size: 11px !important; 
+        line-height: 1.15 !important;
+        overflow: hidden !important; 
     }
-
-    /* ─── 3. CONTAINER: altura explícita = caso mais restritivo (Android 255mm) - 3mm buffer ─── */
-    .container {
-        width: 100% !important;
-        /*
-         * 252mm = 255mm (Android usável) - 3mm buffer de segurança.
-         * iOS e Desktop têm 267mm disponíveis → 15mm de margem extra no rodapé.
-         * O overflow:hidden aqui é apenas cosmético — o conteúdo CABE genuinamente.
-         */
-        height: 252mm !important;
-        max-width: none !important;
-        min-height: 0 !important;
-        padding: 2mm 3mm !important;
-        box-sizing: border-box !important;
-        margin: 0 !important;
-        border: none !important;
-        box-shadow: none !important;
+    
+    .container { 
+        width: 100% !important; 
+        height: 100% !important; /* Preenche 100% e nada mais */
+        max-height: 100% !important; 
+        margin: 0 !important; 
+        padding: 0 !important; 
+        border: none !important; 
+        box-shadow: none !important; 
         display: flex !important;
         flex-direction: column !important;
-        overflow: hidden !important;
-    }
-
-    /* ─── 4. FORM: preenche o container e distribui os filhos ─── */
-    #avaliacao-form {
-        display: flex !important;
-        flex-direction: column !important;
-        flex: 1 1 0% !important;
-        min-height: 0 !important;
-    }
-
-    /* ─── 5. SEÇÕES FIXAS: flex:0 0 auto — tamanho determinado pelo conteúdo ─── */
-    .header {
-        flex: 0 0 auto !important;
-        padding-bottom: 3px !important;
-        margin-bottom: 3px !important;
-        gap: 6px !important;
-    }
-    .header-logo-anesthemed img { height: 40px !important; }
-    .header-logo-inovare img    { height: 26px !important; }
-    .header-title h2            { font-size: 13px !important; }
-    .header-title span          { font-size: 11px !important; }
-
-    .section {
-        flex: 0 0 auto !important;
-        margin-bottom: 2px !important;
-        padding: 2px 4px !important;
-        border-width: 1px !important;
-    }
-
-    .section-title {
-        margin: -2px -4px 2px -4px !important;
-        font-size: 8.5px !important;
-        padding: 2px !important;
-    }
-
-    /* ─── 6. OS 2 BOX-ROWS: únicos elementos elásticos — absorvem espaço sobrando ─── */
-    /*
-     * flex: 1 1 0% com min-height:0:
-     * - Espaço restante após as seções fixas é dividido igualmente entre os 2 box-rows.
-     * - min-height:0 permite shrink abaixo do tamanho intrínseco do conteúdo.
-     * - O overflow:hidden age DENTRO dos box-rows (textarea), não nos elementos abaixo.
-     */
-    .box-row {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 6px !important;
-        flex: 1 1 0% !important;
-        min-height: 0 !important;
-        margin-bottom: 2px !important;
-        width: 100% !important;
-        overflow: hidden !important;
-    }
-
-    .box-row .section {
-        flex: 1 1 0% !important;
-        min-height: 0 !important;
-        overflow: hidden !important;
-        display: flex !important;
-        flex-direction: column !important;
-        margin-bottom: 0 !important;
-        width: 50% !important;
-    }
-
-    .section-content {
-        flex: 1 1 0% !important;
-        min-height: 0 !important;
-        overflow: hidden !important;
-        gap: 2px !important;
-        padding-top: 2px !important;
-        padding-bottom: 2px !important;
-    }
-
-    textarea {
-        min-height: 10px !important;
-        font-size: 10px !important;
-        resize: none !important;
-        flex: 1 1 auto !important;
-    }
-
-    /* ─── 7. ASSINATURAS: após os box-rows no fluxo flex → sempre visíveis ─── */
-    /*
-     * Não usa margin-top:auto. O flex-layout já empurra as assinaturas para
-     * após os box-rows. margin-top:auto com overflow poderia empurrá-las além
-     * do container em casos de pressão. margin-top:0 é mais seguro.
-     */
-    .signatures {
-        flex: 0 0 auto !important;
-        margin-top: 0 !important;
-        padding: 2px 0 0 0 !important;
-        break-inside: avoid !important;
+        overflow: hidden !important; 
         page-break-inside: avoid !important;
-    }
-    .sig-row {
-        /* Reduzido de 30px para 12px para caber no espaço menor (252mm) */
-        margin-top: 12px !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        gap: 10px !important;
-        justify-content: space-around !important;
-    }
-    .sig-box {
-        width: auto !important;
-        flex: 1 !important;
-        max-width: 200px !important;
-        font-size: 10px !important;
+        page-break-after: avoid !important;
     }
 
-    /* ─── 8. GRIDS (reverter qualquer override do @media mobile) ─── */
-    .grid-3 {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 4px !important;
+    /* Protege o tamanho natural dos blocos de cabeçalho e rodapé */
+    .header, .section:not(.elastic-section) { flex: 0 0 auto !important; }
+
+    .section { margin-bottom: 1.5px !important; padding: 2px 6px !important; border-width: 1.5px !important; }
+    .section-title { margin: -2px -6px 2px -6px !important; font-size: 9.5px !important; padding: 2px !important; }
+    
+    /* AQUI ESTÁ O SEGREDO: Só as caixas centrais esticam. Elas vão sugar o espaço vazio sem estourar o limite de 100% */
+    .box-row { 
+        display: flex !important; flex-direction: row !important; gap: 8px !important; 
+        margin-bottom: 2px !important; width: 100% !important; 
+        flex: 1 1 0% !important; 
+        min-height: 0 !important; 
     }
-    .med-list-cols {
+    .box-row .section { width: 50% !important; display: flex !important; flex-direction: column !important; flex: 1 1 0% !important; }
+    
+    .header { padding-bottom: 2px !important; margin-bottom: 2px !important; }
+    .header-logo-anesthemed img { height: 50px !important; } 
+    .header-logo-inovare img { height: 35px !important; }
+    
+    .sn-row { margin-bottom: 1px !important; }
+    .med-item { margin-bottom: 0px !important; }
+    input[type="text"], input[type="number"], .obs-input { height: 14px !important; font-size: 11px !important; padding: 0 !important; }
+    textarea { min-height: 15px !important; font-size: 11px !important; flex: 1 1 0% !important; }
+    
+    /* O ESCUDO DA ASSINATURA: 70 pixels rígidos e intocáveis! O Android não consegue guilhotinar isso */
+    .signatures { 
+        flex: 0 0 70px !important; 
         display: flex !important;
-        flex-direction: row !important;
-        gap: 6px !important;
+        flex-direction: column !important;
+        justify-content: flex-end !important;
+        margin-top: 5px !important; 
+        padding-bottom: 5px !important;
     }
-    .grid-exams {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 1px 6px !important;
-    }
-    .pc-nowrap { flex-wrap: nowrap !important; gap: 3px !important; }
-
-    /* ─── 9. ELEMENTOS GRANULARES ─── */
-    .sn-row  { margin-bottom: 1px !important; }
-    .sn-text { white-space: nowrap !important; font-size: 9px !important; }
-    .med-item { margin-bottom: 0 !important; }
-    .med-col  { justify-content: flex-start !important; }
-    .med-item span { font-size: 9px !important; }
-
-    input[type="text"],
-    input[type="number"],
-    .obs-input {
-        height: 12px !important;
-        font-size: 10px !important;
-        padding: 0 !important;
-    }
-
-    label, .label-text, strong {
-        font-size: 9.5px !important;
-        white-space: nowrap !important;
-    }
-    .sn-text span { white-space: normal !important; }
-
-    .btn-check {
-        width: 10px !important;
-        height: 10px !important;
-        flex-shrink: 0 !important;
-    }
-    input:checked + .btn-check::after { font-size: 9px !important; }
-    input[value="S"]:checked + .btn-check::after,
-    input[name="st"]:checked + .btn-check::after,
-    input[name="asa"]:checked + .btn-check::after { font-size: 11px !important; }
-
-    /* ─── 10. ESCONDER O QUE NÃO IMPRIME ─── */
+    .sig-row { 
+        display: flex !important; flex-direction: row !important; 
+        justify-content: space-around !important; 
+        gap: 15px !important;
+        margin-top: 0 !important;
+    } 
+    
+    .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
+    .med-list-cols { display: flex !important; flex-direction: row !important; gap: 8px !important; }
+    .grid-exams { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2px 8px !important; }
+    .pc-nowrap { flex-wrap: nowrap !important; gap: 4px !important; }
+    
     .buttons { display: none !important; }
 }
