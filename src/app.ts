@@ -1,20 +1,16 @@
-// Declaração para o html2pdf.js que foi inserido via CDN no index.html
-declare const html2pdf: any;
-
 document.addEventListener("DOMContentLoaded", () => {
     carregarDadosUrl();
     definirData();
 
-    const btnDownload = document.getElementById('btn-download') as HTMLButtonElement;
+    const btnPrint = document.getElementById('btn-print') as HTMLButtonElement;
     const btnClear = document.getElementById('btn-clear') as HTMLButtonElement;
     const btnShare = document.getElementById('btn-share') as HTMLButtonElement;
 
-    btnDownload?.addEventListener('click', baixarPdf);
+    btnPrint?.addEventListener('click', abrirImpressao);
     btnClear?.addEventListener('click', limparFormulario);
     btnShare?.addEventListener('click', gerarLinkCompartilhamento);
 
-    // EVENTOS PARA ATUALIZAÇÃO DA URL EM TEMPO REAL
-    // Agora o médico não precisa mais apertar em "copiar link" se quiser apenas copiar a URL lá de cima.
+    // Atualiza URL em tempo real para qualquer digitação ou clique
     const form = document.getElementById('avaliacao-form') as HTMLFormElement;
     form?.addEventListener('input', atualizarUrlEmTempoReal);
     form?.addEventListener('change', atualizarUrlEmTempoReal);
@@ -36,7 +32,6 @@ function atualizarUrlEmTempoReal(): void {
     const baseUrl = window.location.origin + window.location.pathname;
     const newUrl = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
     
-    // Substitui a URL atual no navegador sem recarregar a página
     window.history.replaceState({}, document.title, newUrl);
 }
 
@@ -52,15 +47,15 @@ function limparFormulario(): void {
         const form = document.getElementById("avaliacao-form") as HTMLFormElement;
         form.reset();
         definirData();
-        atualizarUrlEmTempoReal(); // Limpa a URL ao resetar
+        atualizarUrlEmTempoReal(); 
     }
 }
 
 function gerarLinkCompartilhamento(): void {
-    atualizarUrlEmTempoReal(); // Garante que a URL está 100% atualizada
+    atualizarUrlEmTempoReal(); 
     
     const nomeInput = document.getElementById('nome_paciente') as HTMLInputElement;
-    const link = window.location.href; // Pega a URL que já está preenchida
+    const link = window.location.href; 
     const nome = nomeInput?.value.trim() || "PACIENTE";
     
     const msg = `📋 *AVALIAÇÃO PRÉ-ANESTÉSICA*\n👤 PACIENTE: ${nome.toUpperCase()}\n🔗 LINK: ${link}`;
@@ -94,42 +89,16 @@ function carregarDadosUrl(): void {
     });
 }
 
-function baixarPdf(): void {
+function abrirImpressao(): void {
     const nomeInput = document.getElementById('nome_paciente') as HTMLInputElement;
     const n = nomeInput?.value.trim() || "PACIENTE";
-    const fileName = "AVALIACAO_ANESTESICA_" + n.replace(/\s+/g, '_').toUpperCase();
-
-    const element = document.querySelector('.container') as HTMLElement;
-    const btnDownload = document.getElementById('btn-download') as HTMLButtonElement;
     
-    const textoOriginal = btnDownload.innerText;
-    btnDownload.innerText = "Gerando PDF...";
-    btnDownload.disabled = true;
-
-    // Esconde os botões para não saírem na impressão
-    const botoes = document.querySelector('.buttons') as HTMLElement;
-    botoes.style.display = 'none';
-
-    // Para evitar que inputs de texto com muito conteúdo fiquem cortados,
-    // o html2pdf lida bem, mas passamos a qualidade um pouco maior
-    const opt = {
-        margin:       5,
-        filename:     fileName + '.pdf',
-        image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { scale: 2, useCORS: true },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-    html2pdf().set(opt).from(element).save().then(() => {
-        // Devolve os botões após baixar
-        botoes.style.display = 'flex';
-        btnDownload.innerText = textoOriginal;
-        btnDownload.disabled = false;
-    }).catch((err: any) => {
-        console.error("Erro ao gerar PDF:", err);
-        alert("Ocorreu um erro ao gerar o PDF. Você também pode tentar usar a opção 'Imprimir' do navegador.");
-        botoes.style.display = 'flex';
-        btnDownload.innerText = textoOriginal;
-        btnDownload.disabled = false;
-    });
+    // Altera o título da página temporariamente para que o arquivo PDF seja salvo com esse nome
+    const tituloOriginal = document.title;
+    document.title = "AVALIACAO_ANESTESICA_" + n.replace(/\s+/g, '_').toUpperCase();
+    
+    window.print();
+    
+    // Restaura o título original após a impressão
+    document.title = tituloOriginal;
 }

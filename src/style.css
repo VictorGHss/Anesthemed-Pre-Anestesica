@@ -1,4 +1,4 @@
-@page { size: A4; margin: 5mm; }
+@page { size: A4 portrait; margin: 5mm; }
 :root { --primary: #2c3e50; --border: #dcdde1; --bg: #f4f7f6; }
 
 body {
@@ -10,7 +10,7 @@ body {
 
 .container { 
     background-color: #fff; max-width: 850px; margin: 0 auto; 
-    padding: 15px 25px 10px 25px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 10px 25px 10px 25px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
     display: flex; flex-direction: column; min-height: 276mm; box-sizing: border-box;
 }
 
@@ -18,20 +18,20 @@ body {
     display: flex; justify-content: space-between; align-items: center; 
     border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-bottom: 12px; gap: 10px;
 }
-.header-logo-anesthemed img { height: 75px; width: auto; }
-.header-logo-inovare img { height: 50px; width: auto; }
+.header-logo-anesthemed img { height: 70px; width: auto; }
+.header-logo-inovare img { height: 45px; width: auto; }
 
 .header-title { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .header-title h2 { margin: 0; font-size: 16px; text-transform: uppercase; text-align: center; }
 .header-title span { font-size: 12px; font-weight: bold; margin-top: 4px; color: var(--primary); }
 
 .section { 
-    border: 2px solid var(--primary); /* Bordas mais grossas como pedido */
-    margin-bottom: 8px; padding: 6px 10px; border-radius: 4px; display: flex; flex-direction: column; flex: 1; 
+    border: 2px solid var(--primary); 
+    margin-bottom: 6px; padding: 4px 10px; border-radius: 4px; display: flex; flex-direction: column; flex: 1; 
 }
 .section-title { 
     background-color: #f8f9fa; font-weight: bold; padding: 4px; 
-    margin: -6px -10px 6px -10px; text-align: center; text-transform: uppercase; 
+    margin: -4px -10px 6px -10px; text-align: center; text-transform: uppercase; 
     font-size: 10px; color: var(--primary); border-bottom: 2px solid var(--primary);
 }
 
@@ -46,16 +46,11 @@ label, .label-text, span, strong {
 /* FONTE MAIOR E EM NEGRITO PARA OS CAMPOS DIGITADOS */
 input[type="text"], input[type="number"], textarea, .obs-input { 
     border: none; border-bottom: 1px solid var(--primary); flex: 1; 
-    padding: 2px 4px; font-size: 13px; font-weight: bold; outline: none; background: transparent; color: #000;
+    padding: 1px 4px; font-size: 13px; font-weight: bold; outline: none; background: transparent; color: #000;
     min-width: 0;
 }
 
-/* Diminui um pouco a fonte dos placeholders para não poluir */
-input::placeholder {
-    font-size: 10px;
-    font-weight: normal;
-    color: #95a5a6;
-}
+input::placeholder { font-size: 10px; font-weight: normal; color: #95a5a6; }
 
 textarea { resize: none; width: 100%; box-sizing: border-box; flex-grow: 1; min-height: 85px; }
 
@@ -88,46 +83,25 @@ input:checked + .btn-check::after {
     transform: translate(-50%, -50%); 
 }
 
-/* Quando for "S" (Sim): V bem gordo */
-input[value="S"]:checked + .btn-check::after {
-    font-size: 14px; 
-    -webkit-text-stroke: 1.2px var(--primary);
-}
-
-/* Quando for "N" (Não) ou checkbox padrão: V fino */
+input[value="S"]:checked + .btn-check::after { font-size: 14px; -webkit-text-stroke: 1.2px var(--primary); }
 input[value="N"]:checked + .btn-check::after,
-input[type="checkbox"]:not([value="S"]):checked + .btn-check::after {
-    font-size: 11px; 
-    -webkit-text-stroke: 0px transparent;
-}
+input[type="checkbox"]:not([value="S"]):checked + .btn-check::after { font-size: 11px; -webkit-text-stroke: 0px transparent; }
 
-/* Status e ASA (Gordos para chamar atenção) */
 input[name="st"]:checked + .btn-check::after,
-input[name="asa"]:checked + .btn-check::after {
-    font-size: 14px; 
-    -webkit-text-stroke: 1.2px var(--primary);
-}
+input[name="asa"]:checked + .btn-check::after { font-size: 14px; -webkit-text-stroke: 1.2px var(--primary); }
 
-/* --- GRID DO HISTÓRICO CLÍNICO (ALINHAMENTO S/N PERFEITO) --- */
+/* --- GRID DO HISTÓRICO CLÍNICO --- */
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
 
 .sn-header { 
-    display: grid; 
-    grid-template-columns: 20px 20px 1fr; 
-    gap: 4px; 
-    font-weight: bold; 
-    font-size: 9px; 
-    color: #7f8c8d; 
-    margin-bottom: 4px; 
+    display: grid; grid-template-columns: 20px 20px 1fr; gap: 4px; 
+    font-weight: bold; font-size: 9px; color: #7f8c8d; margin-bottom: 4px; 
 }
 .sn-header span { text-align: center; margin: 0; } 
 
 .sn-row { 
-    display: grid; 
-    grid-template-columns: 20px 20px 1fr; 
-    gap: 4px; 
-    align-items: center; 
-    margin-bottom: 4px; 
+    display: grid; grid-template-columns: 20px 20px 1fr; gap: 4px; 
+    align-items: center; margin-bottom: 4px; 
 }
 .sn-row label { display: flex; justify-content: center; margin: 0; }
 .sn-text { font-size: 11px; display: flex; align-items: center; white-space: nowrap; color: var(--primary); font-weight: bold;}
@@ -139,8 +113,8 @@ input[name="asa"]:checked + .btn-check::after {
 
 .grid-exams { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
 
-.signatures { margin-top: auto; padding: 15px 0 20px 0; }
-.sig-row { display: flex; justify-content: space-around; gap: 15px; margin-top: 70px; } 
+.signatures { margin-top: auto; padding: 10px 0 15px 0; }
+.sig-row { display: flex; justify-content: space-around; gap: 15px; margin-top: 50px; } 
 .sig-box { border-top: 1.2px solid var(--primary); text-align: center; width: 250px; padding-top: 4px; font-size: 11px; font-weight: bold; }
 
 .buttons { display: flex; justify-content: center; gap: 10px; padding: 10px; }
@@ -152,36 +126,38 @@ input[name="asa"]:checked + .btn-check::after {
 .btn-share { background-color: #2ecc71; }
 .btn-clear { background-color: #e74c3c; }
 
-/* --- VISUALIZAÇÃO PARA CELULARES --- */
+.obs-input {
+    width: 100%; border: none; border-bottom: 1px dotted #ccc; 
+    background: transparent; margin-top: 8px; outline: none; padding-bottom: 4px; height: 18px;
+}
+
 @media screen and (max-width: 768px) {
     body { font-size: 12px; }
     .container { padding: 10px; min-height: auto; box-shadow: none; }
-    
-    .grid-3, .box-row, .med-list-cols, .grid-exams {
-        grid-template-columns: 1fr; gap: 15px;
-    }
+    .grid-3, .box-row, .med-list-cols, .grid-exams { grid-template-columns: 1fr; gap: 15px; }
     .header { flex-direction: column; text-align: center; gap: 15px; }
     .row { flex-direction: column; align-items: flex-start; gap: 10px; }
-    
-    .row:has(input[type="radio"]), .row:has(input[type="checkbox"]) {
-        flex-direction: row; align-items: center; flex-wrap: wrap;
-    }
-    
+    .row:has(input[type="radio"]), .row:has(input[type="checkbox"]) { flex-direction: row; align-items: center; flex-wrap: wrap; }
     .form-group { width: 100%; flex-direction: column; align-items: flex-start; }
     .form-group label { margin-bottom: 2px; }
-    
     input[type="text"], input[type="number"] { width: 100% !important; box-sizing: border-box; }
-    
     .sig-row { flex-direction: column; align-items: center; gap: 40px; margin-top: 40px; }
     .sig-box { width: 100%; max-width: 300px; }
-    
     .buttons { flex-direction: column; gap: 15px; }
     .buttons button { width: 100%; padding: 15px; font-size: 14px; }
 }
 
 /* --- VISUALIZAÇÃO PARA IMPRESSÃO --- */
 @media print {
-    .container { max-width: 100%; border: none; box-shadow: none; padding: 0; margin: 0; min-height: 276mm; }
+    @page { size: A4 portrait; margin: 0; }
+    body { background: white; margin: 5mm; }
+    .container { 
+        box-shadow: none; 
+        max-width: 100%; 
+        width: 100%; 
+        margin: 0; 
+        padding: 0; 
+        border: none;
+    }
     .buttons { display: none !important; }
-    body { background: white; }
 }
