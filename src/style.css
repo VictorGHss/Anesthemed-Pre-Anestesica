@@ -100,7 +100,7 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 .sn-row label { display: flex; justify-content: center; margin: 0; }
 .sn-text { font-size: 12px; display: flex; align-items: center; white-space: nowrap; color: var(--primary); font-weight: bold;}
 
-/* --- CAIXAS DINÂMICAS: ESTICAM JUNTAS E DIVIDEM ESPAÇO SEM VAZAR --- */
+/* --- CAIXAS DINÂMICAS --- */
 .box-row { 
     display: flex; flex-direction: row; gap: 10px; margin-bottom: 4px; 
     flex: 1 1 auto; 
@@ -148,51 +148,55 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 /* --- VISUALIZAÇÃO PARA CELULARES (Telas < 768px) --- */
 /* ========================================================= */
 @media screen and (max-width: 768px) {
-    /* 
-       Essa media query atua APENAS na tela, organizando em uma coluna, 
-       tirando o vazamento e aumentando a área de toque dos botões.
-    */
-    body { font-size: 14px; overflow-x: hidden; }
+    body { font-size: 14px; overflow-x: hidden; } /* Trava o vazamento no corpo da página */
     
     .container { 
         padding: 15px; height: auto !important; min-height: auto; 
         display: block; box-shadow: none; width: 100%; max-width: 100vw;
+        overflow-x: hidden; /* Trava o vazamento no container */
     }
     
     label, .label-text, span, strong { white-space: normal !important; }
     
-    #avaliacao-form { height: auto; display: flex; flex-direction: column; }
+    #avaliacao-form { height: auto; display: flex; flex-direction: column; overflow-x: hidden; }
     
-    .box-row { flex-direction: column !important; display: flex; height: auto; }
+    .box-row { flex-direction: column !important; display: flex; height: auto; width: 100%; }
     .box-row .section { width: 100% !important; height: auto; flex: none; margin-bottom: 12px; }
     .section-content { justify-content: flex-start; gap: 10px; height: auto; }
     
     .row, div[style*="nowrap"] { 
         flex-wrap: wrap !important; flex-direction: column; align-items: flex-start !important; 
-        gap: 12px; margin-bottom: 10px; 
+        gap: 12px; margin-bottom: 10px; width: 100%;
     }
     
     .row:has(input[type="radio"]), .row:has(input[type="checkbox"]), div[style*="display: flex"] { 
         flex-direction: row; flex-wrap: wrap !important; align-items: center !important; 
     }
     
-    /* Botões de celular maiores */
     .btn-check { width: 24px; height: 24px; margin-right: 6px; }
     input:checked + .btn-check::after { font-size: 20px !important; }
     input[value="S"]:checked + .btn-check::after { font-size: 22px !important; }
     input[name="st"]:checked + .btn-check::after,
     input[name="asa"]:checked + .btn-check::after { font-size: 24px !important; }
     
-    .sn-header, .sn-row { grid-template-columns: 34px 34px 1fr; gap: 8px; }
-    .sn-text { font-size: 14px; white-space: normal; } 
+    .sn-header, .sn-row { grid-template-columns: 34px 34px 1fr; gap: 8px; width: 100%; }
+    .sn-text { font-size: 14px; white-space: normal; width: 100%; display: flex; flex-wrap: wrap; align-items: center; } 
     
+    /* AQUI ESTÁ A CORREÇÃO DO VAZAMENTO DO TABAGISMO/ETILISMO */
     input[type="text"], input[type="number"], .obs-input { 
         width: 100% !important; height: 35px; font-size: 16px; margin-top: 4px;
     }
+    .sn-text input[type="text"] {
+        width: 100px !important; /* Exceção: Não deixa os campinhos curtos esticarem 100% */
+        flex: none !important;
+        margin-top: 0 !important;
+        height: 25px;
+    }
+
     textarea { min-height: 80px; font-size: 16px; }
     .med-item input { height: 30px; }
     
-    .grid-3, .med-list-cols, .grid-exams { display: flex; flex-direction: column; gap: 15px; }
+    .grid-3, .med-list-cols, .grid-exams { display: flex; flex-direction: column; gap: 15px; width: 100%; }
     
     .header { flex-direction: column; text-align: center; gap: 15px; }
     .sig-row { flex-direction: column; align-items: center; gap: 40px; margin-top: 40px !important; }
@@ -202,42 +206,33 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
     .buttons button { width: 100%; padding: 18px; font-size: 16px; margin: 0;}
 }
 
-
 /* ========================================================= */
-/* --- VISUALIZAÇÃO PARA IMPRESSÃO (TELA OU CELULAR) --- */
+/* --- VISUALIZAÇÃO PARA IMPRESSÃO (ZONA DE SEGURANÇA MÁXIMA) --- */
 /* ========================================================= */
 @media print {
-    /* 
-       A mágica acontece aqui: A impressora ignora a tela de celular 
-       e assume este layout que recria a folha A4 com proporção exata!
-    */
     @page { size: A4 portrait; margin: 0; } 
     
     html, body { 
         width: 210mm !important;
-        height: 296mm !important;
+        height: 297mm !important;
         margin: 0 !important; 
         padding: 0 !important; 
-        overflow: hidden !important; 
         background: white !important; 
     }
     
     .container { 
-        width: 100% !important; 
-        min-width: 100% !important; 
-        height: 100% !important;
-        max-height: 100% !important; 
-        margin: 0 !important; 
+        width: 210mm !important; 
+        height: 280mm !important; /* Zona de segurança (280mm ao invés de 296mm) para não gerar página 2 NUNCA */
+        max-height: 280mm !important; 
+        margin: 0 auto !important; 
         padding: 5mm !important; 
         border: none !important; 
         box-shadow: none !important; 
-        overflow: hidden !important; 
-        page-break-inside: avoid !important;
+        overflow: hidden !important; /* Corta implacavelmente o que passar do limite */
         display: flex !important;
         flex-direction: column !important;
     }
     
-    /* Garante que o layout A4 volte (sobrescrevendo o celular se impresso de lá) */
     .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
     .box-row { display: flex !important; flex-direction: row !important; gap: 10px !important; margin-bottom: 2px !important; width: 100% !important; }
     .box-row .section { width: 50% !important; display: flex !important; flex-direction: column !important; }
@@ -247,7 +242,7 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
     .section { margin-bottom: 2px; padding: 2px 6px; }
     .section-title { margin: -2px -6px 2px -6px; }
     
-    .sig-row { display: flex !important; flex-direction: row !important; justify-content: space-around !important; margin-top: 25px !important; }
+    .sig-row { display: flex !important; flex-direction: row !important; justify-content: space-around !important; margin-top: 20px !important; }
     
     .buttons { display: none !important; }
 }
