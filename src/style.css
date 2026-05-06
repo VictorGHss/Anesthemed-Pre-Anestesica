@@ -204,66 +204,235 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 /* --- VISUALIZAÇÃO PARA IMPRESSÃO (BLINDAGEM TOTAL) --- */
 /* ========================================================= */
 @media print {
-    /* Deixa o navegador gerenciar o tamanho da página A4 e tira as margens de erro */
-    @page { size: A4 portrait; margin: 5mm; } 
-    
-    html, body { 
-        width: 100% !important;
-        height: 100% !important; /* Sem forçar milímetros, o Android não surta */
-        margin: 0 !important; 
-        padding: 0 !important; 
-        background: white !important;
-        font-size: 10.5px !important; /* A "mágica" para espremer no Android sem cortar nada */
-        line-height: 1.15 !important;
+    /*
+     * ═══════════════════════════════════════════════════════════════
+     * ESTRATÉGIA ANTI-ANDROID / ANTI-IOS — 3 PRINCÍPIOS:
+     *
+     * 1. @page { margin: 0 } — Elimina o "double-margin bug" do Android.
+     *    O Chrome no Android soma: margem do @page + margem interna da plataforma (~6mm).
+     *    Zerando aqui, a equação vira 0 + ~6mm = só a margem da plataforma,
+     *    que compensamos com padding no .container. Resultado: área previsível.
+     *
+     * 2. Dimensões em `mm` explícitas em html, body E .container.
+     *    html/body a 210mm×297mm força o motor de layout a respeitar
+     *    as dimensões A4 reais, bloqueando o iOS de "inventar" altura.
+     *    O .container usa box-sizing:border-box com padding:5mm,
+     *    então a área interna líquida é sempre 287mm de altura.
+     *
+     * 3. Os 2 `.box-row` são os únicos elementos elásticos (flex:1 1 0%).
+     *    Todo o resto é flex:0 0 auto (tamanho fixo).
+     *    As assinaturas ficam DEPOIS dos box-rows no fluxo do flex,
+     *    então nunca são cortadas — mesmo se o overflow:hidden entrar em ação.
+     *    O overflow:hidden "guilhotina" age dentro dos box-rows (nos textareas),
+     *    nunca nos elementos estruturais abaixo.
+     * ═══════════════════════════════════════════════════════════════
+     */
+
+    /* ─── 1. RESET DE PÁGINA: margin:0 mata o double-margin do Android ─── */
+    @page {
+        size: A4 portrait;
+        margin: 0;
     }
-    
-    .container { 
-        width: 100% !important; 
-        height: 100% !important; /* A folha assume exatamente 1 página disponível */
-        margin: 0 !important; 
-        padding: 0 !important; /* A margem já foi dada no @page */
-        border: none !important; 
-        box-shadow: none !important; 
+
+    /* ─── 2. HTML + BODY: fixar dimensões A4 absolutas em mm ─── */
+    html {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        overflow: hidden !important;
+    }
+
+    body {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        /* 10px dá folga confortável sem precisar de overflow:hidden agressivo */
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+        overflow: hidden !important;
+    }
+
+    /* ─── 3. CONTAINER: a "folha" — padding = nossas margens controladas ─── */
+    .container {
+        width: 210mm !important;
+        height: 297mm !important;
+        max-width: none !important;
+        min-height: 0 !important;
+        /* padding aqui = as margens da página. box-sizing garante que
+           a altura interna seja exatamente 297mm - 5mm - 5mm = 287mm */
+        padding: 5mm 6mm !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
         display: flex !important;
         flex-direction: column !important;
+        /* Segurança de último recurso: se AINDA sobrar 1-2mm,
+           o corte acontece no topo dos box-rows, nunca nas assinaturas */
+        overflow: hidden !important;
+    }
+
+    /* ─── 4. FORM: preenche o container e distribui os filhos ─── */
+    #avaliacao-form {
+        display: flex !important;
+        flex-direction: column !important;
+        flex: 1 1 0% !important;
+        min-height: 0 !important;
+    }
+
+    /* ─── 5. ELEMENTOS FIXOS: flex:0 0 auto — não crescem, não encolhem ─── */
+    .header {
+        flex: 0 0 auto !important;
+        padding-bottom: 3px !important;
+        margin-bottom: 3px !important;
+        gap: 8px !important;
+    }
+    .header-logo-anesthemed img { height: 44px !important; }
+    .header-logo-inovare img    { height: 28px !important; }
+    .header-title h2            { font-size: 14px !important; }
+
+    /* Todas as .section que NÃO estão dentro de .box-row são fixas */
+    .section {
+        flex: 0 0 auto !important;
+        margin-bottom: 2px !important;
+        padding: 2px 5px !important;
+        border-width: 1px !important;
+    }
+
+    .section-title {
+        margin: -2px -5px 2px -5px !important;
+        font-size: 9px !important;
+        padding: 2px !important;
+    }
+
+    /* ─── 6. OS 2 BOX-ROWS: os únicos elementos elásticos da página ─── */
+    /*
+     * flex: 1 1 0% — o "0%" é crucial: distribui o espaço disponível
+     * igualmente entre os dois box-rows, independente do conteúdo.
+     * min-height: 0 — permite encolher ABAIXO do tamanho intrínseco do
+     * conteúdo (padrão do flex é min-height:auto, que bloqueia o shrink).
+     */
+    .box-row {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 6px !important;
+        flex: 1 1 0% !important;
+        min-height: 0 !important;
+        margin-bottom: 2px !important;
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    /* As seções dentro do box-row também precisam ser elásticas */
+    .box-row .section {
+        flex: 1 1 0% !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        margin-bottom: 0 !important;
+        width: 50% !important;
+    }
+
+    .section-content {
+        flex: 1 1 0% !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+        gap: 2px !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+    }
+
+    textarea {
+        min-height: 12px !important;
+        font-size: 11px !important;
+        resize: none !important;
+        /* Deixa o textarea preencher o espaço disponível na section-content */
+        flex: 1 1 auto !important;
+    }
+
+    /* ─── 7. ASSINATURAS: âncora do rodapé — NUNCA pode ser guilhotinada ─── */
+    /*
+     * Por que margin-top:0 e não margin-top:auto?
+     * Com margin-top:auto num flex-container overflow:hidden,
+     * o browser pode empurrar as assinaturas para ALÉM do container
+     * se o conteúdo acima já transbordar. Usando margin-top:0,
+     * as assinaturas ficam no fluxo normal, logo após os box-rows.
+     * O .buttons (display:none) remove o elemento que ficava abaixo delas.
+     */
+    .signatures {
+        flex: 0 0 auto !important;
+        margin-top: 0 !important;
+        padding: 3px 0 0 0 !important;
+        break-inside: avoid !important;
         page-break-inside: avoid !important;
     }
-    
-    .section { margin-bottom: 2px !important; padding: 2px 4px !important; border-width: 1px !important; }
-    
-    .box-row { 
-        display: flex !important; flex-direction: row !important; gap: 8px !important; 
-        margin-bottom: 2px !important; width: 100% !important; 
-        flex: 1 1 auto !important; /* Deixa esticar naturalmente para preencher espaços */
-        min-height: 0 !important; 
+    .sig-row {
+        margin-top: 20px !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 10px !important;
+        justify-content: space-around !important;
     }
-    .box-row .section { width: 50% !important; display: flex !important; flex-direction: column !important; flex: 1 !important; }
-    
-    .section-title { margin: -2px -4px 2px -4px !important; font-size: 9.5px !important; padding: 2px !important; }
-    
-    .header { padding-bottom: 2px !important; margin-bottom: 2px !important; }
-    .header-logo-anesthemed img { height: 45px !important; } /* Diminuímos para garantir espaço extra na folha */
-    .header-logo-inovare img { height: 30px !important; }
-    
-    .sn-row { margin-bottom: 1px !important; }
-    .med-item { margin-bottom: 0px !important; }
-    
-    input[type="text"], input[type="number"], .obs-input { height: 14px !important; font-size: 12px !important; padding: 0 !important; }
-    textarea { min-height: 20px !important; font-size: 12px !important; }
-    
-    /* Posição da Assinatura blindada */
-    .signatures { 
-        flex: none !important; 
-        margin-top: auto !important; 
-        padding-top: 0 !important; 
-        padding-bottom: 5px !important;
+    .sig-box {
+        width: auto !important;
+        flex: 1 !important;
+        max-width: 220px !important;
     }
-    .sig-row { margin-top: 30px !important; } /* Espaço garantido pro Doutor assinar sem empurrar a folha */
-    
-    .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
-    .med-list-cols { display: flex !important; flex-direction: row !important; gap: 8px !important; }
-    .grid-exams { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2px 8px !important; }
+
+    /* ─── 8. GRIDS E LAYOUTS (reverter o mobile) ─── */
+    .grid-3 {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px !important;
+    }
+    .med-list-cols {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 8px !important;
+    }
+    .grid-exams {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 1px 8px !important;
+    }
     .pc-nowrap { flex-wrap: nowrap !important; gap: 4px !important; }
-    
+
+    /* ─── 9. ELEMENTOS GRANULARES ─── */
+    .sn-row    { margin-bottom: 1px !important; }
+    .sn-text   { white-space: nowrap !important; font-size: 10px !important; }
+    .med-item  { margin-bottom: 0 !important; }
+    .med-col   { justify-content: flex-start !important; }
+
+    input[type="text"],
+    input[type="number"],
+    .obs-input {
+        height: 13px !important;
+        font-size: 11px !important;
+        padding: 0 !important;
+    }
+
+    label, .label-text, strong {
+        font-size: 10px !important;
+        white-space: nowrap !important;
+    }
+    /* Spans dentro de .sn-text podem quebrar linha (textos longos) */
+    .sn-text span { white-space: normal !important; }
+
+    .btn-check {
+        width: 11px !important;
+        height: 11px !important;
+        flex-shrink: 0 !important;
+    }
+    input:checked + .btn-check::after        { font-size: 10px !important; }
+    input[value="S"]:checked + .btn-check::after,
+    input[name="st"]:checked + .btn-check::after,
+    input[name="asa"]:checked + .btn-check::after { font-size: 12px !important; }
+
+    /* ─── 10. ESCONDER O QUE NÃO IMPRIME ─── */
     .buttons { display: none !important; }
 }
