@@ -147,7 +147,10 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 /* --- VISUALIZAÇÃO PARA CELULARES (Telas < 768px) --- */
 /* ========================================================= */
 @media screen and (max-width: 768px) {
-    body { font-size: 14px; }
+    body { 
+        font-size: 14px; 
+        overflow-x: hidden; /* Fim do scroll horizontal */
+    }
     
     .container { 
         padding: 15px; 
@@ -155,16 +158,23 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
         min-height: auto; 
         display: block; 
         box-shadow: none; 
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
     
-    #avaliacao-form { height: auto; display: block; }
+    /* Quebra a trava de texto longo que escapava da tela */
+    label, .label-text, span, strong { 
+        white-space: normal !important; 
+    }
     
-    /* Quebra o grid das caixas de 2 colunas para 1 coluna */
-    .box-row { flex-direction: column; display: flex; height: auto; }
-    .box-row .section { width: 100%; height: auto; flex: none; margin-bottom: 12px; }
+    #avaliacao-form { height: auto; display: flex; flex-direction: column; }
+    
+    .box-row { flex-direction: column !important; display: flex; height: auto; }
+    .box-row .section { width: 100% !important; height: auto; flex: none; margin-bottom: 12px; }
     .section-content { justify-content: flex-start; gap: 10px; height: auto; }
     
-    /* Remove a trava do "nowrap" que forçava a linha vazar a tela */
+    /* Quebra as linhas forçadas */
     .row, div[style*="nowrap"] { 
         flex-wrap: wrap !important; 
         flex-direction: column; 
@@ -173,58 +183,60 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
         margin-bottom: 10px; 
     }
     
-    /* Mantém os botões Rádio/Check lado a lado para economizar espaço */
+    /* Mantém rádios juntos */
     .row:has(input[type="radio"]), .row:has(input[type="checkbox"]), div[style*="display: flex"] { 
         flex-direction: row; 
         flex-wrap: wrap !important; 
         align-items: center !important; 
     }
     
-    /* --- BOTOES MAIORES (TOUCH TARGETS) --- */
+    /* Botões MAIORES para o toque */
     .btn-check { width: 24px; height: 24px; margin-right: 6px; }
     input:checked + .btn-check::after { font-size: 20px !important; }
     input[value="S"]:checked + .btn-check::after { font-size: 22px !important; }
     
-    /* Ajusta grade Sim/Não para as novas caixas grandes */
     .sn-header, .sn-row { grid-template-columns: 34px 34px 1fr; gap: 8px; }
-    .sn-text { font-size: 14px; white-space: normal; } /* Deixa o texto quebrar de linha se for longo */
+    .sn-text { font-size: 14px; white-space: normal; } 
     
-    /* Inputs amigáveis para tocar e digitar no celular */
     input[type="text"], input[type="number"], .obs-input { 
         width: 100% !important; height: 35px; font-size: 16px; margin-top: 4px;
     }
     textarea { min-height: 80px; font-size: 16px; }
     .med-item input { height: 30px; }
     
-    /* Transforma as listas laterais em listas verticais */
     .grid-3, .med-list-cols, .grid-exams { 
         display: flex; flex-direction: column; gap: 15px; 
     }
     
     .header { flex-direction: column; text-align: center; gap: 15px; }
-    
     .sig-row { flex-direction: column; align-items: center; gap: 40px; margin-top: 40px !important; }
     .sig-box { width: 100%; max-width: 300px; font-size: 14px; }
     
-    /* Botões finais gigantes para não errar o clique */
     .buttons { flex-direction: column; gap: 12px; padding: 20px 0; }
     .buttons button { width: 100%; padding: 18px; font-size: 16px; margin: 0;}
 }
 
 /* ========================================================= */
-/* --- VISUALIZAÇÃO PARA IMPRESSÃO (NÃO MEXER!) --- */
+/* --- VISUALIZAÇÃO PARA IMPRESSÃO (BLINDADA PARA CELULAR) --- */
 /* ========================================================= */
 @media print {
     @page { size: A4 portrait; margin: 5mm; }
-    body { margin: 0; background: white; }
+    
+    /* Força o navegador de celular a usar a largura exata do papel A4 */
+    body { 
+        margin: 0; 
+        background: white; 
+        min-width: 190mm !important; 
+    }
     
     .container { 
-        height: 98vh !important; 
-        max-height: 98vh !important; 
+        height: 287mm !important; 
+        max-height: 287mm !important; 
+        width: 200mm !important; /* Trava absoluta da largura da folha */
+        min-width: 200mm !important;
+        max-width: 200mm !important; 
         overflow: hidden !important; 
         page-break-inside: avoid;
-        max-width: 100%; 
-        width: 100%; 
         margin: 0; 
         padding: 0; 
         border: none; 
