@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 
-@page { size: A4 portrait; margin: 0; }
+@page { size: A4 portrait; margin: 4mm; }
 :root { --primary: #2c3e50; --border: #dcdde1; --bg: #f4f7f6; }
 
 body {
@@ -105,7 +105,7 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 /* --- CAIXAS DINÂMICAS: ESTICAM JUNTAS E DIVIDEM ESPAÇO --- */
 .box-row { 
     display: flex; flex-direction: row; gap: 10px; margin-bottom: 4px; 
-    flex: 1 1 auto; /* Elástico ligado! As caixas esticam para cobrir buracos */
+    flex: 1 1 auto; 
     min-height: 0; 
     width: 100%; 
 }
@@ -144,6 +144,7 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 .btn-print { background-color: #3498db; }
 .btn-share { background-color: #2ecc71; }
 .btn-clear { background-color: #e74c3c; }
+
 
 /* ========================================================= */
 /* --- VISUALIZAÇÃO RESPONSIVA PARA CELULARES --- */
@@ -201,14 +202,16 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 }
 
 /* ========================================================= */
-/* --- VISUALIZAÇÃO PARA IMPRESSÃO --- */
+/* --- VISUALIZAÇÃO PARA IMPRESSÃO (O FIM DO FANTASMA) --- */
 /* ========================================================= */
 @media print {
     @page { size: A4 portrait; margin: 0; } 
     
+    /* Alteração mágica: Tiramos a altura travada do body para evitar a página vazia */
     html, body { 
         width: 210mm !important;
-        height: 297mm !important;
+        height: auto !important; 
+        min-height: 100% !important;
         margin: 0 !important; 
         padding: 0 !important; 
         background: white !important;
@@ -218,21 +221,21 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
     
     .container { 
         width: 100% !important; 
-        height: 285mm !important; /* Limite de altura super seguro para evitar página 2 */
+        height: 285mm !important; /* Limite cravado, deixando uma margem para não encostar no rodapé do navegador */
         max-height: 285mm !important; 
         margin: 0 !important; 
-        padding: 6mm 8mm !important; 
+        padding: 4mm 6mm !important; 
         border: none !important; 
         box-shadow: none !important; 
         overflow: hidden !important; 
         page-break-inside: avoid !important;
+        page-break-after: avoid !important; /* Proíbe o salto fantasma no fim do container */
         display: flex !important;
         flex-direction: column !important;
     }
     
     .section { margin-bottom: 2px !important; padding: 3px 6px !important; border-width: 1.5px !important; }
     
-    /* A MAGICA VOLTOU: O flex: 1 faz as caixas sugarem os buracos em branco */
     .box-row { 
         display: flex !important; flex-direction: row !important; gap: 10px !important; 
         margin-bottom: 2px !important; width: 100% !important; 
@@ -253,13 +256,11 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
     input[type="text"], input[type="number"], .obs-input { height: 14px !important; font-size: 12px !important; padding: 0 !important; }
     textarea { min-height: 20px !important; font-size: 12px !important; }
     
-    /* ESCUDO DA ASSINATURA: Imune ao crescimento das caixas */
     .signatures { 
         flex: none !important; 
         margin-top: 10px !important; 
         padding-top: 0 !important; 
     }
-    /* Espaço fixo e generoso para assinar */
     .sig-row { margin-top: 45px !important; } 
     
     .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
