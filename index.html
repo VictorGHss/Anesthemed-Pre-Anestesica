@@ -183,11 +183,13 @@
                         <div class="form-group"><label>Creatinina:</label><input type="text" name="ex_creat"></div>
                         <div class="form-group" style="grid-column: span 2;"><label>ECG:</label><input type="text" name="ex_ecg"></div>
                     </div>
+                    <!-- Nova linha de JEJUM, conforme pedido do Doutor -->
                     <div class="row" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px;">
-                        <span class="label-text">JEJUM?</span> 
-                        <label><input type="radio" name="jejum" value="S"><span class="btn-check"></span> Sim</label> 
-                        <label><input type="radio" name="jejum" value="N"><span class="btn-check"></span> Não</label>
-                        <span class="label-text" style="margin-left:auto;">Horas:</span><input type="text" name="jejum_horas" style="width:35px; flex: none; text-align:center;">
+                        <label style="display:flex; align-items:center;">
+                            <input type="checkbox" name="jejum_orientado" value="S"><span class="btn-check"></span> Orientado jejum
+                        </label>
+                        <input type="text" name="jejum_horas" maxlength="2" style="width:30px; flex: none; text-align:center; border-bottom: 1px solid var(--primary); margin: 0 4px;">
+                        <span class="label-text">horas.</span>
                     </div>
                 </div>
             </section>
