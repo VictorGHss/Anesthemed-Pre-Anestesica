@@ -25,11 +25,14 @@ body {
 .header-title h2 { margin: 0; font-size: 16px; text-transform: uppercase; text-align: center; }
 .header-title span { font-size: 12px; font-weight: bold; margin-top: 4px; color: var(--primary); }
 
-.section { border: 1px solid var(--border); margin-bottom: 8px; padding: 6px 10px; border-radius: 4px; display: flex; flex-direction: column; flex: 1; }
+.section { 
+    border: 2px solid var(--primary); /* Bordas mais grossas como pedido */
+    margin-bottom: 8px; padding: 6px 10px; border-radius: 4px; display: flex; flex-direction: column; flex: 1; 
+}
 .section-title { 
     background-color: #f8f9fa; font-weight: bold; padding: 4px; 
     margin: -6px -10px 6px -10px; text-align: center; text-transform: uppercase; 
-    font-size: 10px; color: var(--primary); border-bottom: 1px solid var(--border);
+    font-size: 10px; color: var(--primary); border-bottom: 2px solid var(--primary);
 }
 
 .row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; align-items: center; }
@@ -40,10 +43,18 @@ label, .label-text, span, strong {
     white-space: nowrap; font-size: 11px; 
 }
 
-input[type="text"], input[type="number"], textarea { 
-    border: none; border-bottom: 1px solid #bdc3c7; flex: 1; 
-    padding: 2px 4px; font-size: 11px; outline: none; background: transparent; color: #333;
+/* FONTE MAIOR E EM NEGRITO PARA OS CAMPOS DIGITADOS */
+input[type="text"], input[type="number"], textarea, .obs-input { 
+    border: none; border-bottom: 1px solid var(--primary); flex: 1; 
+    padding: 2px 4px; font-size: 13px; font-weight: bold; outline: none; background: transparent; color: #000;
     min-width: 0;
+}
+
+/* Diminui um pouco a fonte dos placeholders para não poluir */
+input::placeholder {
+    font-size: 10px;
+    font-weight: normal;
+    color: #95a5a6;
 }
 
 textarea { resize: none; width: 100%; box-sizing: border-box; flex-grow: 1; min-height: 85px; }
@@ -140,12 +151,6 @@ input[name="asa"]:checked + .btn-check::after {
 .btn-print { background-color: #3498db; }
 .btn-share { background-color: #2ecc71; }
 .btn-clear { background-color: #e74c3c; }
-
-.obs-input {
-    width: 100%; border: none; border-bottom: 1px dotted #ccc; 
-    background: transparent; margin-top: 8px; outline: none;
-    padding-bottom: 4px; height: 18px;
-}
 
 /* --- VISUALIZAÇÃO PARA CELULARES --- */
 @media screen and (max-width: 768px) {
