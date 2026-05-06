@@ -1,4 +1,4 @@
-/* RESET BÁSICO E BOX-SIZING UNIVERSAL (Impede vazamento lateral) */
+/* RESET BÁSICO E BOX-SIZING UNIVERSAL */
 *, *::before, *::after {
     box-sizing: border-box !important;
 }
@@ -136,30 +136,30 @@ input[name="st"]:checked + .btn-check::after, input[name="asa"]:checked + .btn-c
     .buttons button { width: 100%; padding: 18px; font-size: 16px; margin: 0;}
 }
 
-
 /* ========================================================= */
-/* --- O CÓDIGO FINAL DE IMPRESSÃO (A PROVA DE BALAS) --- */
+/* --- O CÓDIGO FINAL DE IMPRESSÃO (A PROVA DE ANDROID) --- */
 /* ========================================================= */
 @media print {
-    @page { size: A4 portrait; margin: 5mm !important; } 
+    /* ZERAMOS A MARGEM DO SISTEMA! O Android não vai ter o que somar pra estourar a página */
+    @page { size: A4 portrait; margin: 0 !important; } 
     
     html, body { 
-        width: 100% !important; 
-        height: 100% !important; 
+        width: 210mm !important; 
+        height: 295mm !important; /* Exatamente 2mm a menos que o papel A4 para "matar" a página 2 */
         margin: 0 !important; 
         padding: 0 !important; 
         background: white !important;
-        font-size: 10px !important; /* Fonte base reduzida salva MUITO espaço vertical */
+        font-size: 10px !important; 
         line-height: 1.1 !important;
+        overflow: hidden !important; /* Bloqueio absoluto anti-vazamento */
     }
     
     .container { 
         width: 100% !important; 
-        max-width: 100% !important;
         height: 100% !important; 
-        max-height: 100% !important;
+        max-height: 295mm !important;
         margin: 0 !important; 
-        padding: 0 !important; 
+        padding: 8mm 6mm !important; /* Nós criamos a margem por dentro, protegendo o conteúdo */
         border: none !important; 
         box-shadow: none !important; 
         display: flex !important;
@@ -169,21 +169,19 @@ input[name="st"]:checked + .btn-check::after, input[name="asa"]:checked + .btn-c
         page-break-after: avoid !important;
     }
 
-    /* FIM DO VAZAMENTO LATERAL: Usando apenas flex e garantindo que não passe de 100% */
     .box-row { 
         display: flex !important; flex-direction: row !important; gap: 6px !important; 
         margin-bottom: 2px !important; 
         width: 100% !important; 
-        flex: 1 1 auto !important; /* Estica apenas o necessário */
+        flex: 1 1 auto !important; 
         min-height: 0 !important; 
     }
     .box-row .section { 
-        flex: 1 !important; /* NUNCA usar width: 50% aqui para não vazar a lateral */
+        flex: 1 !important; 
         min-width: 0 !important;
         display: flex !important; flex-direction: column !important; margin-bottom: 0 !important; 
     }
 
-    /* As margens negativas precisam bater perfeitamente com os paddings para não dar overflow lateral */
     .section { margin-bottom: 2px !important; padding: 2px 4px !important; border-width: 1px !important; flex: 0 0 auto !important; }
     .section-title { margin: -2px -4px 2px -4px !important; font-size: 9px !important; padding: 2px !important; }
     
@@ -200,10 +198,9 @@ input[name="st"]:checked + .btn-check::after, input[name="asa"]:checked + .btn-c
     
     label, .label-text, span, strong { font-size: 10px !important; }
     
-    /* FIM DO CORTE INFERIOR: Assinatura intocável, mas sem "força bruta" */
     .signatures { 
         flex: 0 0 auto !important; 
-        margin-top: auto !important; /* Empurra pro rodapé elegantemente */
+        margin-top: auto !important; 
         padding-top: 10px !important; 
         padding-bottom: 5px !important;
     }
@@ -211,7 +208,7 @@ input[name="st"]:checked + .btn-check::after, input[name="asa"]:checked + .btn-c
         display: flex !important; flex-direction: row !important; 
         justify-content: space-around !important; 
         gap: 15px !important;
-        margin-top: 30px !important; /* O espaço físico da caneta do Doutor (intocável) */
+        margin-top: 30px !important; 
     } 
     .sig-box { flex: 1 !important; max-width: 200px !important; font-size: 10px !important; }
     
