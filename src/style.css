@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 
-@page { size: A4 portrait; margin: 4mm; }
+@page { size: A4 portrait; margin: 0; }
 :root { --primary: #2c3e50; --border: #dcdde1; --bg: #f4f7f6; }
 
 body {
@@ -53,7 +53,7 @@ label, .label-text, span, strong {
     white-space: nowrap; font-size: 12px; 
 }
 
-/* O segredo para não vazar a tela: inputs curtos (idade, horas) com classe separada */
+/* O segredo para não vazar a tela: inputs curtos com classe separada */
 .short-input { width: 50px !important; flex: none !important; text-align: center; }
 
 input[type="text"], input[type="number"], textarea, .obs-input { 
@@ -102,7 +102,7 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 .sn-row label { display: flex; justify-content: center; margin: 0; }
 .sn-text { font-size: 12px; display: flex; align-items: center; white-space: nowrap; color: var(--primary); font-weight: bold;}
 
-/* --- CAIXAS DINÂMICAS: ESTICAM JUNTAS E DIVIDEM ESPAÇO --- */
+/* --- CAIXAS DINÂMICAS --- */
 .box-row { 
     display: flex; flex-direction: row; gap: 10px; margin-bottom: 4px; 
     flex: 1 1 auto; 
@@ -202,68 +202,68 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 }
 
 /* ========================================================= */
-/* --- VISUALIZAÇÃO PARA IMPRESSÃO (O FIM DO FANTASMA) --- */
+/* --- VISUALIZAÇÃO PARA IMPRESSÃO (A BLINDAGEM DO ANDROID) --- */
 /* ========================================================= */
 @media print {
-    @page { size: A4 portrait; margin: 0; } 
+    @page { size: A4 portrait; margin: 0 !important; } 
     
-    /* Alteração mágica: Tiramos a altura travada do body para evitar a página vazia */
     html, body { 
         width: 210mm !important;
-        height: auto !important; 
-        min-height: 100% !important;
+        height: 100% !important;
+        max-height: 297mm !important; /* Limite de segurança A4 */
         margin: 0 !important; 
         padding: 0 !important; 
         background: white !important;
-        font-size: 11.5px !important; 
-        line-height: 1.2 !important;
+        font-size: 10.5px !important; /* Fonte um fio menor para dar folga */
+        line-height: 1.15 !important;
+        overflow: hidden !important; /* Corta vazamentos na raiz */
     }
     
     .container { 
         width: 100% !important; 
-        height: 285mm !important; /* Limite cravado, deixando uma margem para não encostar no rodapé do navegador */
-        max-height: 285mm !important; 
+        height: 99% !important; 
+        max-height: 270mm !important; /* TAMANHO ULTRA SEGURO PARA ANDROID E IOS! (Serve até em folha Carta se o celular bugar) */
         margin: 0 !important; 
         padding: 4mm 6mm !important; 
         border: none !important; 
         box-shadow: none !important; 
         overflow: hidden !important; 
         page-break-inside: avoid !important;
-        page-break-after: avoid !important; /* Proíbe o salto fantasma no fim do container */
+        break-inside: avoid !important;
         display: flex !important;
         flex-direction: column !important;
     }
     
-    .section { margin-bottom: 2px !important; padding: 3px 6px !important; border-width: 1.5px !important; }
+    .section { margin-bottom: 1.5px !important; padding: 2px 6px !important; border-width: 1px !important; }
     
     .box-row { 
         display: flex !important; flex-direction: row !important; gap: 10px !important; 
-        margin-bottom: 2px !important; width: 100% !important; 
+        margin-bottom: 1.5px !important; width: 100% !important; 
         flex: 1 1 auto !important; 
         min-height: 0 !important; 
     }
     .box-row .section { width: 50% !important; display: flex !important; flex-direction: column !important; flex: 1 !important; }
     
-    .section-title { margin: -3px -6px 3px -6px !important; font-size: 10px !important; padding: 2px !important; }
+    .section-title { margin: -2px -6px 2px -6px !important; font-size: 9.5px !important; padding: 2px !important; }
     
-    .header { padding-bottom: 4px !important; margin-bottom: 4px !important; }
-    .header-logo-anesthemed img { height: 55px !important; } 
-    .header-logo-inovare img { height: 35px !important; }
+    .header { padding-bottom: 2px !important; margin-bottom: 2px !important; }
+    .header-logo-anesthemed img { height: 48px !important; } /* Menores para garantir espaço */
+    .header-logo-inovare img { height: 30px !important; }
     
-    .sn-row { margin-bottom: 1.5px !important; }
-    .med-item { margin-bottom: 1px !important; }
+    .sn-row { margin-bottom: 1px !important; }
+    .med-item { margin-bottom: 0px !important; }
     
     input[type="text"], input[type="number"], .obs-input { height: 14px !important; font-size: 12px !important; padding: 0 !important; }
     textarea { min-height: 20px !important; font-size: 12px !important; }
     
     .signatures { 
         flex: none !important; 
-        margin-top: 10px !important; 
+        margin-top: auto !important; 
         padding-top: 0 !important; 
     }
-    .sig-row { margin-top: 45px !important; } 
+    .sig-row { margin-top: 35px !important; } /* Margem equilibrada e segura para as assinaturas */
     
-    .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+    .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
     .med-list-cols { display: flex !important; flex-direction: row !important; gap: 8px !important; }
     .grid-exams { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2px 8px !important; }
     .pc-nowrap { flex-wrap: nowrap !important; gap: 4px !important; }
