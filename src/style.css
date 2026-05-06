@@ -1,9 +1,9 @@
-/* RESET BÁSICO PARA EVITAR VAZAMENTOS E AJUSTAR LARGURAS */
+/* RESET BÁSICO */
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
-@page { size: A4 portrait; margin: 5mm; }
+@page { size: A4 portrait; margin: 4mm; }
 :root { --primary: #2c3e50; --border: #dcdde1; --bg: #f4f7f6; }
 
 body {
@@ -13,7 +13,6 @@ body {
     color: var(--primary); -webkit-print-color-adjust: exact; print-color-adjust: exact;
 }
 
-/* BASE: LAYOUT DESKTOP (A4) */
 .container { 
     background-color: #fff; max-width: 850px; margin: 0 auto; 
     padding: 10px 25px 10px 25px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -53,6 +52,9 @@ label, .label-text, span, strong {
     margin-right: 4px; font-weight: bold; color: var(--primary) !important; 
     white-space: nowrap; font-size: 12px; 
 }
+
+/* O segredo para não vazar a tela: inputs curtos (idade, horas) com classe separada */
+.short-input { width: 50px !important; flex: none !important; }
 
 input[type="text"], input[type="number"], textarea, .obs-input { 
     border: none; border-bottom: 1px solid var(--primary); flex: 1; 
@@ -145,29 +147,30 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 
 
 /* ========================================================= */
-/* --- VISUALIZAÇÃO PARA CELULARES (Telas < 768px) --- */
+/* --- VISUALIZAÇÃO RESPONSIVA PARA CELULARES --- */
 /* ========================================================= */
+/* A classe pc-nowrap só impede a quebra de linha em telas grandes (computadores) */
+.pc-nowrap { flex-wrap: nowrap; }
+
 @media screen and (max-width: 768px) {
-    body { font-size: 14px; overflow-x: hidden; } /* Trava o vazamento no corpo da página */
+    body { font-size: 14px; overflow-x: hidden; }
     
     .container { 
         padding: 15px; height: auto !important; min-height: auto; 
         display: block; box-shadow: none; width: 100%; max-width: 100vw;
-        overflow-x: hidden; /* Trava o vazamento no container */
+        overflow-x: hidden;
     }
     
     label, .label-text, span, strong { white-space: normal !important; }
     
-    #avaliacao-form { height: auto; display: flex; flex-direction: column; overflow-x: hidden; }
+    #avaliacao-form { height: auto; display: flex; flex-direction: column; }
+    
+    /* Quebra a trava de linha única do PC para as coisas fluírem naturalmente no celular */
+    .pc-nowrap { flex-wrap: wrap !important; gap: 10px; }
     
     .box-row { flex-direction: column !important; display: flex; height: auto; width: 100%; }
     .box-row .section { width: 100% !important; height: auto; flex: none; margin-bottom: 12px; }
     .section-content { justify-content: flex-start; gap: 10px; height: auto; }
-    
-    .row, div[style*="nowrap"] { 
-        flex-wrap: wrap !important; flex-direction: column; align-items: flex-start !important; 
-        gap: 12px; margin-bottom: 10px; width: 100%;
-    }
     
     .row:has(input[type="radio"]), .row:has(input[type="checkbox"]), div[style*="display: flex"] { 
         flex-direction: row; flex-wrap: wrap !important; align-items: center !important; 
@@ -182,16 +185,11 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
     .sn-header, .sn-row { grid-template-columns: 34px 34px 1fr; gap: 8px; width: 100%; }
     .sn-text { font-size: 14px; white-space: normal; width: 100%; display: flex; flex-wrap: wrap; align-items: center; } 
     
-    /* AQUI ESTÁ A CORREÇÃO DO VAZAMENTO DO TABAGISMO/ETILISMO */
-    input[type="text"], input[type="number"], .obs-input { 
+    /* Exceção mágica: Impede as barras curtas de vazarem a tela */
+    input[type="text"]:not(.short-input), input[type="number"]:not(.short-input), .obs-input { 
         width: 100% !important; height: 35px; font-size: 16px; margin-top: 4px;
     }
-    .sn-text input[type="text"] {
-        width: 100px !important; /* Exceção: Não deixa os campinhos curtos esticarem 100% */
-        flex: none !important;
-        margin-top: 0 !important;
-        height: 25px;
-    }
+    .short-input { height: 30px !important; font-size: 14px; width: 60px !important; }
 
     textarea { min-height: 80px; font-size: 16px; }
     .med-item input { height: 30px; }
@@ -207,7 +205,7 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 }
 
 /* ========================================================= */
-/* --- VISUALIZAÇÃO PARA IMPRESSÃO (ZONA DE SEGURANÇA MÁXIMA) --- */
+/* --- VISUALIZAÇÃO PARA IMPRESSÃO (NÃO VAZA, 1 PÁGINA) --- */
 /* ========================================================= */
 @media print {
     @page { size: A4 portrait; margin: 0; } 
@@ -217,32 +215,46 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
         height: 297mm !important;
         margin: 0 !important; 
         padding: 0 !important; 
-        background: white !important; 
+        background: white !important;
+        font-size: 11.5px !important; /* Fonte imperceptivelmente menor para garantir folga */
+        line-height: 1.2 !important;
     }
     
     .container { 
-        width: 210mm !important; 
-        height: 280mm !important; /* Zona de segurança (280mm ao invés de 296mm) para não gerar página 2 NUNCA */
-        max-height: 280mm !important; 
-        margin: 0 auto !important; 
-        padding: 5mm !important; 
+        width: 100% !important; 
+        height: 100% !important; 
+        max-height: 100% !important; 
+        margin: 0 !important; 
+        padding: 5mm 6mm !important; /* Margem da folha A4 embutida e protegida */
         border: none !important; 
         box-shadow: none !important; 
-        overflow: hidden !important; /* Corta implacavelmente o que passar do limite */
+        overflow: hidden !important; /* Parede de concreto: corta o que tentar pular pra página 2 */
+        page-break-inside: avoid !important;
         display: flex !important;
         flex-direction: column !important;
     }
     
+    /* Aperto de parafusos para sobrar espaço e não usar a 2ª página */
+    .section { margin-bottom: 2px !important; padding: 2px 6px !important; }
+    .box-row { margin-bottom: 2px !important; }
+    .section-title { margin: -2px -6px 2px -6px !important; }
+    
+    .header { padding-bottom: 4px !important; margin-bottom: 4px !important; }
+    .header-logo-anesthemed img { height: 60px !important; }
+    .header-logo-inovare img { height: 40px !important; }
+    
+    .sn-row { margin-bottom: 2px !important; }
+    .med-item { margin-bottom: 1px !important; }
+    
+    .sig-row { margin-top: 20px !important; }
+    
+    /* Garante que o layout A4 volte a funcionar mesmo se impresso do celular */
     .grid-3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
     .box-row { display: flex !important; flex-direction: row !important; gap: 10px !important; margin-bottom: 2px !important; width: 100% !important; }
     .box-row .section { width: 50% !important; display: flex !important; flex-direction: column !important; }
     .med-list-cols { display: flex !important; flex-direction: row !important; }
     .grid-exams { display: grid !important; grid-template-columns: 1fr 1fr !important; }
-    
-    .section { margin-bottom: 2px; padding: 2px 6px; }
-    .section-title { margin: -2px -6px 2px -6px; }
-    
-    .sig-row { display: flex !important; flex-direction: row !important; justify-content: space-around !important; margin-top: 20px !important; }
+    .pc-nowrap { flex-wrap: nowrap !important; }
     
     .buttons { display: none !important; }
 }

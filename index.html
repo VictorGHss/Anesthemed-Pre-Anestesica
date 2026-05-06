@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="form-group" style="flex: 2;"><label>Cirurgia proposta:</label><input type="text" name="cirurgia"></div>
-                <div class="form-group"><label>Idade:</label><input type="number" name="idade_paciente" id="idade_paciente" style="width: 45px; flex: none;"><span> ANOS</span></div>
+                <div class="form-group"><label>Idade:</label><input type="number" name="idade_paciente" id="idade_paciente" class="short-input"><span> ANOS</span></div>
             </div>
             <div class="row">
                 <div class="form-group"><label>Cirurgião:</label><input type="text" name="cirurgiao"></div>
@@ -46,11 +46,11 @@
                     <div class="sn-row"><label><input type="radio" name="d5" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d5" value="N"><span class="btn-check"></span></label> <span class="sn-text">05. Diabetes mellitus</span></div>
                     <div class="sn-row"><label><input type="radio" name="d6" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d6" value="N"><span class="btn-check"></span></label> <span class="sn-text">06. Outras d. endócrinas</span></div>
                     <div class="sn-row"><label><input type="radio" name="d7" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d7" value="N"><span class="btn-check"></span></label> <span class="sn-text">07. Pneumopatia</span></div>
-                    <div class="sn-row"><label><input type="radio" name="d8" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d8" value="N"><span class="btn-check"></span></label> <span class="sn-text">08. Tabagismo <input type="text" name="d8_obs" placeholder="tempo/quant" style="width:75px; margin-left: 5px; flex: none;"></span></div>
+                    <div class="sn-row"><label><input type="radio" name="d8" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d8" value="N"><span class="btn-check"></span></label> <span class="sn-text">08. Tabagismo <input type="text" name="d8_obs" placeholder="tempo/quant" class="short-input" style="margin-left: 5px;"></span></div>
                 </div>
                 <div>
                     <div class="sn-header"><span>S</span><span>N</span><span></span></div>
-                    <div class="sn-row"><label><input type="radio" name="d9" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d9" value="N"><span class="btn-check"></span></label> <span class="sn-text">09. Etilismo <input type="text" name="d9_obs" placeholder="quantifique" style="width:70px; margin-left: 5px; flex: none;"></span></div>
+                    <div class="sn-row"><label><input type="radio" name="d9" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d9" value="N"><span class="btn-check"></span></label> <span class="sn-text">09. Etilismo <input type="text" name="d9_obs" placeholder="quantifique" class="short-input" style="margin-left: 5px;"></span></div>
                     <div class="sn-row"><label><input type="radio" name="d10" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d10" value="N"><span class="btn-check"></span></label> <span class="sn-text">10. Hepatite</span></div>
                     <div class="sn-row"><label><input type="radio" name="d11" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d11" value="N"><span class="btn-check"></span></label> <span class="sn-text">11. Doença renal</span></div>
                     <div class="sn-row"><label><input type="radio" name="d12" value="S"><span class="btn-check"></span></label><label><input type="radio" name="d12" value="N"><span class="btn-check"></span></label> <span class="sn-text">12. Alergia a medicamentos</span></div>
@@ -81,7 +81,7 @@
                 <div class="section-title">COMENTAR DADOS POSITIVOS</div>
                 <div class="section-content">
                     <textarea name="comentarios_positivos" style="border:none; height: 100%;"></textarea>
-                    <div class="row" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px; flex-wrap: nowrap;">
+                    <div class="row pc-nowrap" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px;">
                         <span class="label-text">ANTICOAGULANTES:</span>
                         <label style="margin-left:5px;"><input type="radio" name="atc" value="S"><span class="btn-check"></span> Sim</label>
                         <label style="margin-left:5px;"><input type="radio" name="atc" value="N"><span class="btn-check"></span> Não</label>
@@ -112,7 +112,7 @@
                             <div class="med-item"><span>12</span><input type="text" name="med_12"></div>
                         </div>
                     </div>
-                    <div class="row" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px; flex-wrap: nowrap;">
+                    <div class="row pc-nowrap" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px;">
                         <span class="label-text" style="color: #c0392b !important;">ALERGIAS:</span>
                         <input type="text" name="alergias_desc" style="flex: 1; min-width: 0; color: #c0392b; border-bottom: 1px solid #c0392b;">
                     </div>
@@ -125,15 +125,15 @@
             <section class="section">
                 <div class="section-title">EXAME FÍSICO</div>
                 <div class="section-content">
-                    <div class="row" style="flex-wrap: nowrap;">
-                        <label>PESO:</label><input type="text" name="peso" style="width: 40px; flex: none;">
-                        <label style="margin-left: 5px;">ALTURA:</label><input type="text" name="altura" style="width: 40px; flex: none;">
+                    <div class="row pc-nowrap">
+                        <label>PESO:</label><input type="text" name="peso" class="short-input">
+                        <label style="margin-left: 5px;">ALTURA:</label><input type="text" name="altura" class="short-input">
                         <label style="margin-left: 5px;">PA:</label><input type="text" name="pa" style="flex: 1; min-width: 0;">
                     </div>
                     
-                    <div class="row" style="flex-wrap: nowrap; justify-content: space-between;">
+                    <div class="row pc-nowrap" style="justify-content: space-between;">
                         <div style="display: flex; align-items: center; flex: none;">
-                            <label>Mallampati:</label><input type="number" name="mallampati" style="width: 30px; flex: none;">
+                            <label>Mallampati:</label><input type="number" name="mallampati" class="short-input">
                         </div>
                         <div style="display: flex; align-items: center; flex: none;">
                             <label style="margin-left: 5px;">DEM:</label>
@@ -142,24 +142,24 @@
                         </div>
                     </div>
                     
-                    <div class="row" style="flex-wrap: nowrap;">
+                    <div class="row pc-nowrap">
                         <span class="label-text">Intubação Difícil?</span> 
                         <label><input type="radio" name="intubacao_dificil" value="S"><span class="btn-check"></span> S</label>
                         <label><input type="radio" name="intubacao_dificil" value="N"><span class="btn-check"></span> N</label>
 
                         <div style="display: flex; align-items: center; margin-left: auto;">
-                            <label>T:</label><input type="text" name="temperatura" style="width:30px; flex: none; margin-right: 4px;">
+                            <label>T:</label><input type="text" name="temperatura" class="short-input" style="margin-right: 4px;">
                             <label><input type="radio" name="febre" value="Afeb"><span class="btn-check"></span> Afeb</label>
                             <label><input type="radio" name="febre" value="Feb"><span class="btn-check"></span> Feb</label>
                         </div>
                     </div>
                     
-                    <div class="row" style="flex-wrap: nowrap; align-items: center;">
+                    <div class="row pc-nowrap" style="align-items: center;">
                         <label>Resp:</label><input type="text" name="resp" style="flex: 1; min-width: 0;">
                         <label style="margin-left: 6px;"><input type="checkbox" name="cpp_livres" value="S"><span class="btn-check"></span> CPP Livres</label>
                     </div>
                     
-                    <div class="row" style="flex-wrap: nowrap; align-items: center;">
+                    <div class="row pc-nowrap" style="align-items: center;">
                         <label>Cardio:</label><input type="text" name="cardio" style="flex: 1; min-width: 0;">
                         <label style="margin-left: 6px;"><input type="checkbox" name="brnf" value="S"><span class="btn-check"></span> BRNF</label>
                     </div>
@@ -183,12 +183,11 @@
                         <div class="form-group"><label>Creatinina:</label><input type="text" name="ex_creat"></div>
                         <div class="form-group" style="grid-column: span 2;"><label>ECG:</label><input type="text" name="ex_ecg"></div>
                     </div>
-                    <!-- Nova linha de JEJUM, conforme pedido do Doutor -->
-                    <div class="row" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px;">
+                    <div class="row pc-nowrap" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px;">
                         <label style="display:flex; align-items:center;">
                             <input type="checkbox" name="jejum_orientado" value="S"><span class="btn-check"></span> Orientado jejum
                         </label>
-                        <input type="text" name="jejum_horas" maxlength="2" style="width:30px; flex: none; text-align:center; border-bottom: 1px solid var(--primary); margin: 0 4px;">
+                        <input type="text" name="jejum_horas" maxlength="2" class="short-input" style="text-align:center; border-bottom: 1px solid var(--primary); margin: 0 4px;">
                         <span class="label-text">horas.</span>
                     </div>
                 </div>
