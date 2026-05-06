@@ -26,7 +26,11 @@
             </div>
             <div class="row">
                 <div class="form-group" style="flex: 2;"><label>Cirurgia proposta:</label><input type="text" name="cirurgia"></div>
-                <div class="form-group"><label>Idade:</label><input type="number" name="idade_paciente" id="idade_paciente" class="short-input"><span> ANOS</span></div>
+                <div class="form-group" style="display: flex; align-items: center;">
+                    <label>Idade:</label>
+                    <input type="number" name="idade_paciente" id="idade_paciente" class="short-input">
+                    <span style="margin-left: 5px;"> ANOS</span>
+                </div>
             </div>
             <div class="row">
                 <div class="form-group"><label>Cirurgião:</label><input type="text" name="cirurgiao"></div>
@@ -75,7 +79,6 @@
             </div>
         </section>
 
-        <!-- PRIMEIRA LINHA DAS 4 CAIXAS -->
         <div class="box-row">
             <section class="section">
                 <div class="section-title">COMENTAR DADOS POSITIVOS</div>
@@ -120,7 +123,6 @@
             </section>
         </div>
 
-        <!-- SEGUNDA LINHA DAS 4 CAIXAS -->
         <div class="box-row">
             <section class="section">
                 <div class="section-title">EXAME FÍSICO</div>
@@ -185,7 +187,7 @@
                     </div>
                     <div class="row pc-nowrap" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px;">
                         <label style="display:flex; align-items:center;">
-                            <input type="checkbox" name="jejum_orientado" value="S"><span class="btn-check"></span> Orientado jejum
+                            <input type="checkbox" name="jejum_orientado" value="S"><span class="btn-check"></span> Orientado jejum de
                         </label>
                         <input type="text" name="jejum_horas" maxlength="2" class="short-input" style="text-align:center; border-bottom: 1px solid var(--primary); margin: 0 4px;">
                         <span class="label-text">horas.</span>
