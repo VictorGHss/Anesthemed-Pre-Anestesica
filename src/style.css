@@ -99,42 +99,33 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 .sn-row label { display: flex; justify-content: center; margin: 0; }
 .sn-text { font-size: 12px; display: flex; align-items: center; white-space: nowrap; color: var(--primary); font-weight: bold;}
 
-/* --- CAIXAS DINÂMICAS: ESTICAM JUNTAS E DIVIDEM ESPAÇO SEM VAZAR (BUG CORRIGIDO) --- */
+/* --- CAIXAS DINÂMICAS: ESTICAM JUNTAS E DIVIDEM ESPAÇO SEM VAZAR --- */
 .box-row { 
     display: flex; flex-direction: row; gap: 10px; margin-bottom: 4px; 
     flex: 1 1 auto; 
     min-height: 0; 
-    width: 100%; /* Garante que a linha não passe de 100% da página */
+    width: 100%; 
 }
 .box-row .section { 
-    /* flex: 1 faz com que a caixa calcule automaticamente os 50% descontando os 10px do gap, evitando o vazamento */
-    flex: 1; 
-    min-width: 0; 
-    margin-bottom: 0; 
-    display: flex; flex-direction: column; 
+    flex: 1; min-width: 0; margin-bottom: 0; display: flex; flex-direction: column; 
 }
 .section-content {
-    display: flex; flex-direction: column; flex: 1 1 auto; 
-    justify-content: space-between; 
-    gap: 3px; padding-top: 3px; min-height: 0;
+    display: flex; flex-direction: column; flex: 1 1 auto; justify-content: space-between; 
+    gap: 3px; padding-top: 3px; padding-bottom: 3px; min-height: 0;
 }
-.section-content .row {
-    margin-bottom: 0; 
-}
+.section-content .row { margin-bottom: 0; }
 
 /* MEDICAMENTOS */
 .med-list-cols { display: flex; flex-direction: row; gap: 10px; flex: 1; width: 100%; min-width: 0; }
-.med-col { display: flex; flex-direction: column; flex: 1; justify-content: space-between; min-width: 0; }
-.med-item { display: flex; align-items: center; width: 100%; min-width: 0; }
+.med-col { display: flex; flex-direction: column; flex: 1; justify-content: space-between; min-width: 0; padding-bottom: 2px; }
+.med-item { display: flex; align-items: center; width: 100%; min-width: 0; margin-bottom: 2px; }
 .med-item span { font-size: 11px; font-weight: bold; margin-right: 4px; width: 16px; color: #bdc3c7 !important; flex: none; }
-.med-item input { flex: 1; min-width: 0; } 
+.med-item input { flex: 1; min-width: 0; height: 14px; } 
 
 /* EXAMES COMPLEMENTARES */
 .grid-exams { 
-    display: grid; 
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); 
-    grid-template-rows: repeat(5, 1fr); 
-    gap: 2px 10px; width: 100%; flex: 1; align-items: center; 
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); 
+    grid-template-rows: repeat(5, 1fr); gap: 2px 10px; width: 100%; flex: 1; align-items: center; 
 }
 
 /* ASSINATURAS */
@@ -151,24 +142,78 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
 .btn-share { background-color: #2ecc71; }
 .btn-clear { background-color: #e74c3c; }
 
+
+/* ========================================================= */
+/* --- VISUALIZAÇÃO PARA CELULARES (Telas < 768px) --- */
+/* ========================================================= */
 @media screen and (max-width: 768px) {
-    body { font-size: 13px; }
-    .container { padding: 10px; height: auto; min-height: auto; box-shadow: none; }
-    .grid-3, .box-row, .med-list-cols, .grid-exams { grid-template-columns: 1fr; gap: 15px; flex-direction: column; }
-    .box-row .section { width: 100%; }
+    body { font-size: 14px; }
+    
+    .container { 
+        padding: 15px; 
+        height: auto !important; 
+        min-height: auto; 
+        display: block; 
+        box-shadow: none; 
+    }
+    
+    #avaliacao-form { height: auto; display: block; }
+    
+    /* Quebra o grid das caixas de 2 colunas para 1 coluna */
+    .box-row { flex-direction: column; display: flex; height: auto; }
+    .box-row .section { width: 100%; height: auto; flex: none; margin-bottom: 12px; }
+    .section-content { justify-content: flex-start; gap: 10px; height: auto; }
+    
+    /* Remove a trava do "nowrap" que forçava a linha vazar a tela */
+    .row, div[style*="nowrap"] { 
+        flex-wrap: wrap !important; 
+        flex-direction: column; 
+        align-items: flex-start !important; 
+        gap: 12px; 
+        margin-bottom: 10px; 
+    }
+    
+    /* Mantém os botões Rádio/Check lado a lado para economizar espaço */
+    .row:has(input[type="radio"]), .row:has(input[type="checkbox"]), div[style*="display: flex"] { 
+        flex-direction: row; 
+        flex-wrap: wrap !important; 
+        align-items: center !important; 
+    }
+    
+    /* --- BOTOES MAIORES (TOUCH TARGETS) --- */
+    .btn-check { width: 24px; height: 24px; margin-right: 6px; }
+    input:checked + .btn-check::after { font-size: 20px !important; }
+    input[value="S"]:checked + .btn-check::after { font-size: 22px !important; }
+    
+    /* Ajusta grade Sim/Não para as novas caixas grandes */
+    .sn-header, .sn-row { grid-template-columns: 34px 34px 1fr; gap: 8px; }
+    .sn-text { font-size: 14px; white-space: normal; } /* Deixa o texto quebrar de linha se for longo */
+    
+    /* Inputs amigáveis para tocar e digitar no celular */
+    input[type="text"], input[type="number"], .obs-input { 
+        width: 100% !important; height: 35px; font-size: 16px; margin-top: 4px;
+    }
+    textarea { min-height: 80px; font-size: 16px; }
+    .med-item input { height: 30px; }
+    
+    /* Transforma as listas laterais em listas verticais */
+    .grid-3, .med-list-cols, .grid-exams { 
+        display: flex; flex-direction: column; gap: 15px; 
+    }
+    
     .header { flex-direction: column; text-align: center; gap: 15px; }
-    .row { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .row:has(input[type="radio"]), .row:has(input[type="checkbox"]) { flex-direction: row; align-items: center; flex-wrap: wrap; }
-    .form-group { width: 100%; flex-direction: column; align-items: flex-start; }
-    .form-group label { margin-bottom: 2px; }
-    input[type="text"], input[type="number"] { width: 100% !important; }
-    .sig-row { flex-direction: column; align-items: center; gap: 40px; margin-top: 40px; }
-    .sig-box { width: 100%; max-width: 300px; }
-    .buttons { flex-direction: column; gap: 15px; }
-    .buttons button { width: 100%; padding: 15px; font-size: 14px; }
+    
+    .sig-row { flex-direction: column; align-items: center; gap: 40px; margin-top: 40px !important; }
+    .sig-box { width: 100%; max-width: 300px; font-size: 14px; }
+    
+    /* Botões finais gigantes para não errar o clique */
+    .buttons { flex-direction: column; gap: 12px; padding: 20px 0; }
+    .buttons button { width: 100%; padding: 18px; font-size: 16px; margin: 0;}
 }
 
-/* --- VISUALIZAÇÃO PARA IMPRESSÃO --- */
+/* ========================================================= */
+/* --- VISUALIZAÇÃO PARA IMPRESSÃO (NÃO MEXER!) --- */
+/* ========================================================= */
 @media print {
     @page { size: A4 portrait; margin: 5mm; }
     body { margin: 0; background: white; }
@@ -188,7 +233,6 @@ input[name="asa"]:checked + .btn-check::after { font-size: 16px; -webkit-text-st
     
     .section { margin-bottom: 3px; padding: 3px 8px; }
     .box-row { margin-bottom: 3px; }
-    
     .sig-row { margin-top: 45px !important; }
     
     .buttons { display: none !important; }
