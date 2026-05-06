@@ -73,20 +73,24 @@
             </div>
         </section>
 
+        <!-- PRIMEIRA LINHA DAS 4 CAIXAS -->
         <div class="box-row">
             <section class="section">
                 <div class="section-title">COMENTAR DADOS POSITIVOS</div>
-                <textarea name="comentarios_positivos" style="border:none"></textarea>
-                <div class="row" style="margin-top:4px; border-top:1px solid #eee; padding-top:4px;">
-                    <span class="label-text">ANTICOAGULANTES:</span>
-                    <label style="margin-left:5px;"><input type="radio" name="atc" value="S"><span class="btn-check"></span> Sim</label>
-                    <label style="margin-left:5px;"><input type="radio" name="atc" value="N"><span class="btn-check"></span> Não</label>
+                <div style="display: flex; flex-direction: column; flex: 1;">
+                    <textarea name="comentarios_positivos" style="border:none"></textarea>
+                    <div class="row" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px;">
+                        <span class="label-text">ANTICOAGULANTES:</span>
+                        <label style="margin-left:5px;"><input type="radio" name="atc" value="S"><span class="btn-check"></span> Sim</label>
+                        <label style="margin-left:5px;"><input type="radio" name="atc" value="N"><span class="btn-check"></span> Não</label>
+                    </div>
                 </div>
             </section>
+            
             <section class="section">
                 <div class="section-title">MEDICAMENTOS EM USO</div>
-                <div class="med-list-cols">
-                    <div>
+                <div class="med-list-cols" style="flex: 1;">
+                    <div style="display: flex; flex-direction: column; justify-content: space-evenly;">
                         <div class="med-item"><span>01</span><input type="text" name="med_1"></div>
                         <div class="med-item"><span>02</span><input type="text" name="med_2"></div>
                         <div class="med-item"><span>03</span><input type="text" name="med_3"></div>
@@ -94,7 +98,7 @@
                         <div class="med-item"><span>05</span><input type="text" name="med_5"></div>
                         <div class="med-item"><span>06</span><input type="text" name="med_6"></div>
                     </div>
-                    <div>
+                    <div style="display: flex; flex-direction: column; justify-content: space-evenly;">
                         <div class="med-item"><span>07</span><input type="text" name="med_7"></div>
                         <div class="med-item"><span>08</span><input type="text" name="med_8"></div>
                         <div class="med-item"><span>09</span><input type="text" name="med_9"></div>
@@ -106,73 +110,77 @@
             </section>
         </div>
 
+        <!-- SEGUNDA LINHA DAS 4 CAIXAS -->
         <div class="box-row">
             <section class="section">
                 <div class="section-title">EXAME FÍSICO</div>
-                
-                <div class="row" style="flex-wrap: nowrap;">
-                    <label>PESO:</label><input type="text" name="peso" style="width: 45px; flex: none;">
-                    <label style="margin-left: 5px;">ALTURA:</label><input type="text" name="altura" style="width: 45px; flex: none;">
-                    <label style="margin-left: 5px;">PA:</label><input type="text" name="pa" style="flex: 1;">
-                </div>
-                
-                <div class="row" style="justify-content: space-between;">
-                    <div style="display: flex; align-items: center;">
-                        <label>Mallampati:</label><input type="number" name="mallampati" style="width: 35px; flex: none;">
+                <div style="display: flex; flex-direction: column; flex: 1; justify-content: space-evenly;">
+                    <div class="row" style="flex-wrap: nowrap;">
+                        <label>PESO:</label><input type="text" name="peso" style="width: 45px; flex: none;">
+                        <label style="margin-left: 5px;">ALTURA:</label><input type="text" name="altura" style="width: 45px; flex: none;">
+                        <label style="margin-left: 5px;">PA:</label><input type="text" name="pa" style="flex: 1;">
                     </div>
-                    <div style="display: flex; align-items: center;">
-                        <label style="margin-left: 5px;">DEM:</label>
-                        <label style="margin-left: 5px;"><input type="radio" name="dem" value=">12,5"><span class="btn-check"></span> &gt; 12,5</label>
-                        <label style="margin-left: 5px;"><input type="radio" name="dem" value="<12,5"><span class="btn-check"></span> &lt; 12,5</label>
+                    
+                    <div class="row" style="justify-content: space-between;">
+                        <div style="display: flex; align-items: center;">
+                            <label>Mallampati:</label><input type="number" name="mallampati" style="width: 35px; flex: none;">
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <label style="margin-left: 5px;">DEM:</label>
+                            <label style="margin-left: 5px;"><input type="radio" name="dem" value=">12,5"><span class="btn-check"></span> &gt; 12,5</label>
+                            <label style="margin-left: 5px;"><input type="radio" name="dem" value="<12,5"><span class="btn-check"></span> &lt; 12,5</label>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="row">
-                    <span class="label-text">Intubação Difícil?</span> 
-                    <label><input type="radio" name="intubacao_dificil" value="S"><span class="btn-check"></span> S</label>
-                    <label><input type="radio" name="intubacao_dificil" value="N"><span class="btn-check"></span> N</label>
+                    
+                    <div class="row">
+                        <span class="label-text">Intubação Difícil?</span> 
+                        <label><input type="radio" name="intubacao_dificil" value="S"><span class="btn-check"></span> S</label>
+                        <label><input type="radio" name="intubacao_dificil" value="N"><span class="btn-check"></span> N</label>
 
-                    <div style="display: flex; align-items: center; margin-left: auto;">
-                        <label>T:</label><input type="text" name="temperatura" style="width:35px; flex: none; margin-right: 5px;">
-                        <label><input type="radio" name="febre" value="Afeb"><span class="btn-check"></span> Afeb.</label>
-                        <label><input type="radio" name="febre" value="Feb"><span class="btn-check"></span> Feb.</label>
+                        <div style="display: flex; align-items: center; margin-left: auto;">
+                            <label>T:</label><input type="text" name="temperatura" style="width:35px; flex: none; margin-right: 5px;">
+                            <label><input type="radio" name="febre" value="Afeb"><span class="btn-check"></span> Afeb.</label>
+                            <label><input type="radio" name="febre" value="Feb"><span class="btn-check"></span> Feb.</label>
+                        </div>
                     </div>
+                    
+                    <div class="row" style="flex-wrap: nowrap; align-items: center;">
+                        <label>Resp:</label><input type="text" name="resp" style="flex: 1; min-width: 0;">
+                        <label style="margin: 0 2px;"><input type="checkbox" name="cpp_livres" value="S"><span class="btn-check"></span> CPP Livres</label>
+                        <label>Alt:</label><input type="text" name="resp_alt" style="width: 35px; flex: none;">
+                    </div>
+                    
+                    <div class="row" style="flex-wrap: nowrap; align-items: center;">
+                        <label>Cardio:</label><input type="text" name="cardio" style="flex: 1; min-width: 0;">
+                        <label style="margin: 0 2px;"><input type="checkbox" name="brnf" value="S"><span class="btn-check"></span> BRNF</label>
+                        <label>Alt:</label><input type="text" name="cardio_alt" style="width: 35px; flex: none;">
+                    </div>
+                    
+                    <div class="row"><div class="form-group"><label>Coluna:</label><input type="text" name="coluna"></div></div>
+                    <div class="row"><div class="form-group"><label>Acesso:</label><input type="text" name="acesso"></div></div>
                 </div>
-                
-                <div class="row" style="flex-wrap: nowrap; align-items: center;">
-                    <label>Resp:</label><input type="text" name="resp" style="flex: 1; min-width: 0;">
-                    <label style="margin: 0 2px;"><input type="checkbox" name="cpp_livres" value="S"><span class="btn-check"></span> CPP Livres</label>
-                    <label>Alt:</label><input type="text" name="resp_alt" style="width: 35px; flex: none;">
-                </div>
-                
-                <div class="row" style="flex-wrap: nowrap; align-items: center;">
-                    <label>Cardio:</label><input type="text" name="cardio" style="flex: 1; min-width: 0;">
-                    <label style="margin: 0 2px;"><input type="checkbox" name="brnf" value="S"><span class="btn-check"></span> BRNF</label>
-                    <label>Alt:</label><input type="text" name="cardio_alt" style="width: 35px; flex: none;">
-                </div>
-                
-                <div class="row"><div class="form-group"><label>Coluna:</label><input type="text" name="coluna"></div></div>
-                <div class="row"><div class="form-group"><label>Acesso:</label><input type="text" name="acesso"></div></div>
             </section>
             
             <section class="section">
                 <div class="section-title">EXAMES COMPLEMENTARES</div>
-                <div class="grid-exams">
-                    <div class="form-group"><label>HB:</label><input type="text" name="ex_hb"></div>
-                    <div class="form-group"><label>VG:</label><input type="text" name="ex_vg"></div>
-                    <div class="form-group"><label>Glic:</label><input type="text" name="ex_glic"></div>
-                    <div class="form-group"><label>Plaq:</label><input type="text" name="ex_plaq"></div>
-                    <div class="form-group"><label>TAP/RNI:</label><input type="text" name="ex_tap"></div>
-                    <div class="form-group"><label>KPTT:</label><input type="text" name="ex_kptt"></div>
-                    <div class="form-group"><label>Ureia:</label><input type="text" name="ex_ureia"></div>
-                    <div class="form-group"><label>Creatinina:</label><input type="text" name="ex_creat"></div>
-                    <div class="form-group" style="grid-column: span 2;"><label>ECG:</label><input type="text" name="ex_ecg"></div>
-                </div>
-                <div class="row" style="margin-top:6px; border-top:1px solid #eee; padding-top:5px;">
-                    <span class="label-text">JEJUM?</span> 
-                    <label><input type="radio" name="jejum" value="S"><span class="btn-check"></span> Sim</label> 
-                    <label><input type="radio" name="jejum" value="N"><span class="btn-check"></span> Não</label>
-                    <span class="label-text" style="margin-left:auto;">Horas:</span><input type="text" name="jejum_horas" style="width:35px; flex: none; text-align:center;">
+                <div style="display: flex; flex-direction: column; flex: 1; justify-content: space-evenly;">
+                    <div class="grid-exams">
+                        <div class="form-group"><label>HB:</label><input type="text" name="ex_hb"></div>
+                        <div class="form-group"><label>VG:</label><input type="text" name="ex_vg"></div>
+                        <div class="form-group"><label>Glic:</label><input type="text" name="ex_glic"></div>
+                        <div class="form-group"><label>Plaq:</label><input type="text" name="ex_plaq"></div>
+                        <div class="form-group"><label>TAP/RNI:</label><input type="text" name="ex_tap"></div>
+                        <div class="form-group"><label>KPTT:</label><input type="text" name="ex_kptt"></div>
+                        <div class="form-group"><label>Ureia:</label><input type="text" name="ex_ureia"></div>
+                        <div class="form-group"><label>Creatinina:</label><input type="text" name="ex_creat"></div>
+                        <div class="form-group" style="grid-column: span 2;"><label>ECG:</label><input type="text" name="ex_ecg"></div>
+                    </div>
+                    <div class="row" style="margin-top:auto; border-top:1px solid #eee; padding-top:4px;">
+                        <span class="label-text">JEJUM?</span> 
+                        <label><input type="radio" name="jejum" value="S"><span class="btn-check"></span> Sim</label> 
+                        <label><input type="radio" name="jejum" value="N"><span class="btn-check"></span> Não</label>
+                        <span class="label-text" style="margin-left:auto;">Horas:</span><input type="text" name="jejum_horas" style="width:35px; flex: none; text-align:center;">
+                    </div>
                 </div>
             </section>
         </div>
